@@ -1,0 +1,12 @@
+function func(x){
+let type = typeof(x);
+
+if (type!=="number"){
+    console.log(`We can not calculate the circle area, because we receive a ${type}.`)
+    return;
+}
+
+let result= Math.pow(x,2)*Math.PI;
+
+console.log(result.toFixed(2));
+}
