@@ -1,0 +1,30 @@
+function func(startingPoint,...elements){
+
+    startingPoint=Number(startingPoint);
+
+    elements.forEach(element => {
+        if(element===`chop`){
+        startingPoint/=2;
+        console.log(startingPoint);
+        }
+        else if ( element===`dice`){
+            startingPoint = Math.sqrt(startingPoint);
+            console.log(startingPoint);
+        }
+        else if(element===`spice`){
+            startingPoint++;
+            console.log(startingPoint);
+        }
+        else if(element===`bake`){
+            startingPoint*=3;
+            console.log(startingPoint);
+        }
+        else if(element===`fillet`){
+            startingPoint*=0.8;
+            console.log(startingPoint.toFixed(1));
+        }
+
+    });
+
+
+  }
