@@ -1,0 +1,8 @@
+function func(x,y,z){
+
+    let kilo = Number(y/1000);
+    
+    let price = kilo*z;
+    console.log(`I need $${price.toFixed(2)} to buy ${kilo.toFixed(2)} kilograms ${x}.`)
+    
+  }
