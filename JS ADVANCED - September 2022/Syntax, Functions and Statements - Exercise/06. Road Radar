@@ -1,0 +1,62 @@
+function func(speed,area){
+
+    const motorwaySpeedLimit = 130;
+    const interstateSpeedLimit = 90;
+    const citySpeedLimit = 50;
+    const residentialSpeedLimit = 20;
+
+    let diff = 0;
+    let allowedSpeed = 0;
+
+    if(area===`motorway`){
+        if(speed<=motorwaySpeedLimit){
+            console.log(`Driving ${speed} km/h in a ${motorwaySpeedLimit} zone`)
+        }
+        else{
+            diff=motorwaySpeedLimit-speed;
+            allowedSpeed = motorwaySpeedLimit;
+        }
+    }
+    else if(area===`interstate`){
+        if(speed<=interstateSpeedLimit){
+            console.log(`Driving ${speed} km/h in a ${interstateSpeedLimit} zone`)
+        }
+        else{
+            diff=interstateSpeedLimit-speed;
+            allowedSpeed = interstateSpeedLimit;
+        } 
+    }
+    else if(area===`city`){
+        if(speed<=citySpeedLimit){
+            console.log(`Driving ${speed} km/h in a ${citySpeedLimit} zone`)
+        }
+        else{
+            diff=citySpeedLimit-speed;
+            allowedSpeed = citySpeedLimit;
+        } 
+    }
+    else if(area===`residential`){
+        if(speed<=residentialSpeedLimit){
+            console.log(`Driving ${speed} km/h in a ${residentialSpeedLimit} zone`)
+        }
+        else{
+            diff=residentialSpeedLimit-speed;
+            allowedSpeed = residentialSpeedLimit;
+        } 
+    }
+    if(diff!==0){
+
+        let status =``;
+        diff = Math.abs(diff);
+        if(diff<21){
+            status = `speeding`;
+        }
+        else if(diff<41){
+            status=`excessive speeding`
+        }
+        else {
+            status =`reckless driving`
+        }
+        console.log(`The speed is ${diff} km/h faster than the allowed speed of ${allowedSpeed} - ${status}`)
+    }
+  }
