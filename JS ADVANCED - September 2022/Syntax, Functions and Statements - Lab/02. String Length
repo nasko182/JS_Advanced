@@ -1,0 +1,10 @@
+function func(x,y,z){
+
+let count = x.length+y.length+z.length;
+
+let avarage = Math.floor(count/3);
+
+console.log(count);
+console.log(avarage);
+
+}
