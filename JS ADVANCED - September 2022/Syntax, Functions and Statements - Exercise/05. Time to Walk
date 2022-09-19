@@ -1,0 +1,28 @@
+function func(steps,metersByStep,kmInH){
+
+    let meters = steps*metersByStep;
+    let breakTime = Math.floor(meters/500)*60;
+    let mBySec = kmInH*5/18;
+
+    let timeInSec = (meters/mBySec)+breakTime;
+
+    let hours = Math.floor(timeInSec/3600);
+    for(let i = 0; i<hours;i++){
+        timeInSec-=3600;
+    }
+    let minutes = Math.floor(timeInSec/60);
+    let seconds = Math.round(timeInSec%60);
+
+
+    if (hours<10){
+        hours=`0${hours}`;
+    }
+    if (minutes<10){
+        minutes=`0${minutes}`;
+    }
+    if (seconds<10){
+        seconds=`0${seconds}`;
+    }
+    
+    console.log(`${hours}:${minutes}:${seconds}`)
+  }
