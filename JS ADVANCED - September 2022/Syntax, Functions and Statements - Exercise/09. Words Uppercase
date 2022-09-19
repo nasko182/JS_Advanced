@@ -1,0 +1,19 @@
+function func(w){
+
+    let result = ``;
+
+    for(let i = 0;i<w.length;i++){
+        let ch = w.substr(i,1);
+
+        if(ch===` `){
+            result+=`, `;
+        }
+        else if(ch.match(/[a-z]/i)){
+            result+= ch.toUpperCase();
+        }
+        else if(ch===`.`&&w.substr(i+1,1)!==` `){
+            result+=`, `
+        }
+    }
+    console.log(result);
+  }
