@@ -1,0 +1,17 @@
+function func(x,y,z){
+
+let largestNum = Number.MIN_SAFE_INTEGER;
+
+if (x>=largestNum){
+    largestNum=x;
+}
+if (y>=largestNum){
+    largestNum=y;
+}
+if (z>=largestNum){
+    largestNum=z;
+}
+
+console.log(`The largest number is ${largestNum}.`)
+
+}
