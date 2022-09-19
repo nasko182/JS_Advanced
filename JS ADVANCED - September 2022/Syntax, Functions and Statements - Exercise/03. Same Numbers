@@ -1,0 +1,19 @@
+function func(x){
+
+let isSame = true;
+x=x.toString();
+let first = x.substr(0,1);
+let sum = 0;
+
+   for(let i = 0; i< x.length; i++){
+
+    if(first!==x.substr(i,1)){
+        isSame = false;
+    }
+
+    sum+=Number(x.substr(i,1))
+   }
+
+   console.log(isSame);
+   console.log(sum);
+  }
