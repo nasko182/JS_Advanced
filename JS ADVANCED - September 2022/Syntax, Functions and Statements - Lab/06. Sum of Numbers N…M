@@ -1,0 +1,8 @@
+function func(x,y){
+let result = 0;
+for(let i = Number(x); i<=Number(y); i++){
+result+=i;
+}
+
+console.log(result);
+}
