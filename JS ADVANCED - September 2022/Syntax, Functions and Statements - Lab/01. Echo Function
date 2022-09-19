@@ -1,0 +1,7 @@
+function echo(param){
+
+let lenght = param.length;
+
+console.log(lenght);
+console.log(param)
+}
