@@ -1,0 +1,11 @@
+function func(arr,first,second){   
+
+    let arr2 = arr
+    .filter((n,i)=>i%2!==0)
+    .map(n=>n*2)
+    .reverse();
+
+
+      
+    return arr2;
+   }
