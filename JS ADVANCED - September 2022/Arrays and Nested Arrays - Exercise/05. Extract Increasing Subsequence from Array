@@ -1,0 +1,15 @@
+function func(arr){  
+   let max = Number.MIN_SAFE_INTEGER;
+
+   for(let i = 0; i<arr.length;i++){
+    if(max<=arr[i]){
+        max=arr[i];
+    }
+    else{
+        arr[i]=``;
+    }
+   }
+
+
+   return arr.filter(n=> n!==``);
+   }
