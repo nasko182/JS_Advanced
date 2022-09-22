@@ -1,0 +1,9 @@
+function func(arr,first,second){   
+
+    first = arr.indexOf(first);
+    second = arr.indexOf(second)+1;
+    let arr2 = arr.slice(first,second);
+
+      
+    return arr2;
+   }
