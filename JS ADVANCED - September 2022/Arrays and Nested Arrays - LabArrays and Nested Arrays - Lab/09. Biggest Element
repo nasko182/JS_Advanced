@@ -1,0 +1,14 @@
+function func(arr){   
+
+    let maxElement = Number.MIN_SAFE_INTEGER;
+
+    arr.forEach(array => {
+       array.forEach(element=>{
+        if(element>maxElement){
+            maxElement=element;
+        }
+       }) 
+    });
+      
+    return maxElement;
+   }
