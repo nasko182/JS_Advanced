@@ -1,0 +1,26 @@
+function func(arr){  
+   
+let sum =0;
+
+    for(let i =0;i<arr.length-1;i++){
+        for(let j =0;j<arr[i].length;j++){
+            if(arr[i][j]===arr[i+1][j]){
+                sum++;
+            }
+            if(arr[i][j]===arr[i][j+1]){
+                sum++;
+            }
+        }
+    }
+
+    let lastRowIndex = arr.length-1;
+    for(let j =0;j<arr[lastRowIndex].length;j++){
+        if(arr[lastRowIndex][j]===arr[lastRowIndex][j+1]){
+            sum++;
+        }
+    }
+
+
+
+    return sum;
+   }
