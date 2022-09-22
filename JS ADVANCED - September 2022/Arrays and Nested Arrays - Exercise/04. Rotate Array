@@ -1,0 +1,8 @@
+function func(arr,n){  
+   for(let i =0;i<n;i++){
+    let last = arr.pop();
+    arr.unshift(last);
+   }
+
+   console.log(arr.join(` `))
+   }
