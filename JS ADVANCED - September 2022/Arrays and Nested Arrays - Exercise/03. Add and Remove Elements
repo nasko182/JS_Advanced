@@ -1,0 +1,20 @@
+function func(arr){  
+   let num =1;
+   let res = [];
+    arr.forEach(element => {
+        if(element === 'add'){
+            res.push(num++);
+        }
+        else if(element ===`remove`){
+            res.pop();
+            num++;
+        }
+    });
+    
+    if(res.length>0){
+        console.log(res.join(`\n`));
+    }
+    else{
+        console.log(`Empty`)
+    }
+   }
