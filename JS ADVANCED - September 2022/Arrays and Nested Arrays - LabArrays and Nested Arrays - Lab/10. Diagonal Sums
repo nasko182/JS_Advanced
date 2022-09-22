@@ -1,0 +1,27 @@
+function func(arr){  
+    let res =[]; 
+
+    let firstDiagonalSum = 0;
+    let secondDiagonalSum = 0;
+
+    let firstDiagonalIndex = 0;
+    let secondDiagonalIndex = arr[0].length-1;
+
+    for(let i =0;i<arr[0].length;i++){
+
+        let firstNum = arr[i][firstDiagonalIndex];
+        let secondNum = arr[i][secondDiagonalIndex];
+
+        firstDiagonalSum+=firstNum;
+        secondDiagonalSum+=secondNum;
+
+        firstDiagonalIndex++;
+        secondDiagonalIndex--;
+    }
+
+
+    res.unshift(secondDiagonalSum);
+    res.unshift(firstDiagonalSum);
+
+    console.log(res.join(' '));
+   }
