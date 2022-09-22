@@ -1,0 +1,7 @@
+function func(arr){
+
+    let sum = Number(arr.pop());
+    sum+= Number(arr.shift());
+
+    return sum;
+  }
