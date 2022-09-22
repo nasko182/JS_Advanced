@@ -1,0 +1,5 @@
+function func(arr,del){  
+   
+    return arr.filter((n,i)=>i%del===0);
+
+   }
