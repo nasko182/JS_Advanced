@@ -1,0 +1,7 @@
+function func(arr){   
+
+    let arr2 = arr.sort((a,b) => a - b);
+
+      
+    return arr2.splice(arr.length/2);
+   }
