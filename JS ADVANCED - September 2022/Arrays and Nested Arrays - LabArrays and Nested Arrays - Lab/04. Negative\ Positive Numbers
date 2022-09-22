@@ -1,0 +1,15 @@
+function func(arr){
+
+    let arrRes =[];
+
+    arr.forEach(element=>{
+        if(element<0){
+            arrRes.unshift(element);
+        }
+        else{
+            arrRes.push(element);
+        }
+    });
+
+    return arrRes;
+  }
