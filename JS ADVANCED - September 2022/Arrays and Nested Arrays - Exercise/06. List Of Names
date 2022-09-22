@@ -1,0 +1,8 @@
+function func(arr){  
+   
+    arr=arr.sort((a,b)=>a.localeCompare(b));
+    let num = 1;
+    arr=arr.map(n=>(num++) +`.`+n )
+
+    console.log(arr.join(`\n`))
+   }
