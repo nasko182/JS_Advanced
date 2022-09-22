@@ -1,0 +1,28 @@
+function func(arr) {
+
+    let res = true;
+    let magicNum = arr[0].reduce((t,c)=>t+c);
+
+    arr.forEach(array => {
+        let rowSum = array.reduce((t,c)=>t+c);
+        if (magicNum!==rowSum){
+            res = false;
+        }
+    });
+
+    for (let i = 0; i < arr.length; i++) {
+        let colSum =0;
+        arr.forEach(array => {
+            colSum+=array[i]; 
+        });
+
+        if (magicNum!==colSum){
+            res = false;
+            console.log(res);
+            return;
+        }
+        
+    }
+
+    console.log(res);
+}
