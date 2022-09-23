@@ -1,0 +1,62 @@
+function func(rows,cols){
+    let matrix = [];
+    let rowRight =0;
+    let rowLeft=rows-1;
+    let colUp=0;
+    let colDown=cols-1;
+
+    let num = 1;
+
+for (let i = 0; i < rows; i++) {
+    matrix[i]=[];
+    for (let j = 0; j < cols; j++) {
+        matrix[i][j]=false;  
+    }
+    
+}
+
+let rounds = 0;
+
+if(rows>cols){
+    rounds=Math.ceil(cols/2);
+}
+else{
+    rounds=Math.ceil(rows/2);
+}
+
+for(let i =0;i<rounds;i++){
+
+    for(let cell=0;cell<cols;cell++){
+        if( matrix[rowRight][cell]===false){
+            matrix[rowRight][cell]=num;
+        num++;
+        }
+    }
+    for(let cell=0;cell<rows;cell++){
+        if(matrix[cell][colDown]===false){
+            matrix[cell][colDown]=num;
+        num++;
+        }
+    }
+    for(let cell=cols-1;cell>=0;cell--){
+        if( matrix[rowLeft][cell]===false){
+            matrix[rowLeft][cell]=num;
+        num++;
+        }
+    }
+    for(let cell=rows-1;cell>=0;cell--){
+        if(matrix[cell][colUp]===false){
+            matrix[cell][colUp]=num;
+        num++;
+        
+        }
+    }
+    rowLeft--;
+    rowRight++;
+    colDown--;
+    colUp++;
+}
+matrix.forEach(row=>{
+    console.log(row.join(` `));
+})
+}
