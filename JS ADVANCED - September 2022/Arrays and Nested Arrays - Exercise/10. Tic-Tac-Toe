@@ -1,0 +1,147 @@
+function func(arr) {
+
+    let field = [
+        [false, false, false],
+        [false, false, false],
+        [false, false, false]
+    ];
+    for (let i = 0; i < arr.length; i++) {
+        let combination = arr[i];
+
+        let row = combination[0];
+        let col = combination[2];
+
+        let isDone = true;
+
+        let isEnd = false;
+        if(isEnd){
+            return;
+        }
+
+        field.forEach(rowA => {
+            rowA.forEach(cell => {
+                if (cell === false) {
+                    isDone = false;
+                    return;
+                }
+            })
+        });
+
+        if (isDone) {
+            console.log("The game ended! Nobody wins :(");
+            field.forEach(row => {
+                console.log(row.join(`	`));
+            });
+            isEnd = true;
+            return;
+        }
+        else {
+            if (i % 2 === 0) {
+                if (field[row][col] === false) {
+                    field[row][col] = `X`;
+                }
+                else if (field[row][col] !== false) {
+                    console.log("This place is already taken. Please choose another!");
+                    i--;
+                    arr.splice(i,1);
+                }
+            }
+            else {
+                if (field[row][col] === false) {
+                    field[row][col] = `O`;
+                }
+                else if (field[row][col] !== false) {
+                    console.log("This place is already taken. Please choose another!");
+                    arr.splice(i,1);
+                    i--;
+                    
+                }
+            }
+
+            if (field[0][0] === field[0][1] && field[0][1] === field[0][2] && field[0][1] !== false) {
+
+                console.log(`Player ${field[0][1]} wins!`);
+
+                field.forEach(row => {
+                    console.log(row.join(`	`));
+                });
+                isEnd=true;
+                return;
+
+            }
+            else if (field[1][0] === field[1][1] && field[1][1] === field[1][2] && field[1][1] !== false) {
+
+                console.log(`Player ${field[1][1]} wins!`);
+
+                field.forEach(row => {
+                    console.log(row.join(`	`));
+                });
+                isEnd=true;
+                return;
+            }
+            else if (field[2][0] === field[2][1] && field[2][1] === field[2][2] && field[2][1] !== false) {
+
+                console.log(`Player ${field[2][1]} wins!`);
+
+                field.forEach(row => {
+                    console.log(row.join(`	`));
+                });
+                isEnd=true;
+                return;
+            }
+            else if (field[0][0] === field[1][1] && field[1][1] === field[2][2] && field[1][1] !== false) {
+
+                console.log(`Player ${field[1][1]} wins!`);
+
+                field.forEach(row => {
+                    console.log(row.join(`	`));
+                });
+                isEnd=true;
+                return;
+            }
+            else if (field[0][2] === field[1][1] && field[1][1] === field[2][0] && field[1][1] !== false) {
+
+                console.log(`Player ${field[1][1]} wins!`);
+
+                field.forEach(row => {
+                    console.log(row.join(`	`));
+                });
+                isEnd=true;
+                return;
+            }
+            else if (field[0][0] === field[1][0] && field[1][0] === field[2][0] && field[1][0] !== false) {
+
+                console.log(`Player ${field[1][0]} wins!`);
+
+                field.forEach(row => {
+                    console.log(row.join(`	`));
+                });
+                isEnd=true;
+                return;
+            }
+            else if (field[0][1] === field[1][1] && field[1][1] === field[2][1] && field[1][1] !== false) {
+
+                console.log(`Player ${field[1][1]} wins!`);
+
+                field.forEach(row => {
+                    console.log(row.join(`	`));
+                });
+                isEnd=true;
+                return;
+            }
+            else if (field[0][2] === field[1][2] && field[1][2] === field[2][2] && field[1][2] !== false) {
+
+                console.log(`Player ${field[1][2]} wins!`);
+
+                field.forEach(row => {
+                    console.log(row.join(`	`));
+                });
+                isEnd=true;
+                return;
+            }
+
+
+        }
+
+    }
+}
