@@ -26,8 +26,8 @@ function func(arr) {
         firstDiagonalSum += firstNum;
         secondDiagonalSum += secondNum;
 
-        firstDiagonal += `` + firstNum;
-        secondDiagonal += `` + secondNum;
+        firstDiagonal += ` ` + firstNum;
+        secondDiagonal += ` ` + secondNum;
 
         firstDiagonalIndex++;
         secondDiagonalIndex--;
@@ -37,19 +37,23 @@ function func(arr) {
     if (firstDiagonalSum === secondDiagonalSum) {
         
        matrix.forEach(row => {
-        row = row.map(e=>e=15);
+        row = row.map(e=>e=firstDiagonalSum);
         result.push(row);
        });
 
     firstDiagonalIndex = 0;
     secondDiagonalIndex = result[0].length - 1;
 
+    firstDiagonal = firstDiagonal.split(` `);
+    secondDiagonal = secondDiagonal.split(` `);
+    firstDiagonal.shift();
+    secondDiagonal.shift();
 
     for (let i = 0; i < result[0].length; i++) {
 
         result[i][firstDiagonalIndex]=firstDiagonal[i];
         result[i][secondDiagonalIndex]=secondDiagonal[i];
-
+        
         firstDiagonalIndex++;
         secondDiagonalIndex--;
     }
