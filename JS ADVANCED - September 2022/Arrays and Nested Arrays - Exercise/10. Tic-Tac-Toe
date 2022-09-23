@@ -5,12 +5,15 @@ function func(arr) {
         [false, false, false],
         [false, false, false]
     ];
+    
+    let needPrint = false;
+
     for (let i = 0; i < arr.length; i++) {
         let combination = arr[i];
-
+        
         let row = combination[0];
         let col = combination[2];
-
+        
         let isDone = true;
 
         let isEnd = false;
@@ -33,6 +36,7 @@ function func(arr) {
                 console.log(row.join(`	`));
             });
             isEnd = true;
+            needPrint=false;
             return;
         }
         else {
@@ -42,8 +46,9 @@ function func(arr) {
                 }
                 else if (field[row][col] !== false) {
                     console.log("This place is already taken. Please choose another!");
-                    i--;
                     arr.splice(i,1);
+                    i--;
+                    needPrint=true;
                 }
             }
             else {
@@ -54,7 +59,7 @@ function func(arr) {
                     console.log("This place is already taken. Please choose another!");
                     arr.splice(i,1);
                     i--;
-                    
+                    needPrint=true;
                 }
             }
 
@@ -143,5 +148,12 @@ function func(arr) {
 
         }
 
+    }
+
+    if(needPrint){
+        console.log("The game ended! Nobody wins :(");
+            field.forEach(row => {
+                console.log(row.join(`	`));
+            });
     }
 }
