@@ -1,0 +1,68 @@
+function func(arr) {
+    let matrix = [];
+    for (let index = 0; index < arr.length; index++) {
+        let arrRow = arr[index];
+        let matRow = matrix[index];
+
+
+        matRow = arrRow.split(' ');
+        matrix.push(matRow);
+    }
+
+    let firstDiagonalSum = 0;
+    let secondDiagonalSum = 0;
+
+    let firstDiagonalIndex = 0;
+    let secondDiagonalIndex = matrix[0].length - 1;
+
+    let firstDiagonal = ``;
+    let secondDiagonal = ``;
+
+    for (let i = 0; i < matrix[0].length; i++) {
+
+        let firstNum = Number(matrix[i][firstDiagonalIndex]);
+        let secondNum = Number(matrix[i][secondDiagonalIndex]);
+
+        firstDiagonalSum += firstNum;
+        secondDiagonalSum += secondNum;
+
+        firstDiagonal += `` + firstNum;
+        secondDiagonal += `` + secondNum;
+
+        firstDiagonalIndex++;
+        secondDiagonalIndex--;
+    }
+
+    let result =[];
+    if (firstDiagonalSum === secondDiagonalSum) {
+        
+       matrix.forEach(row => {
+        row = row.map(e=>e=15);
+        result.push(row);
+       });
+
+    firstDiagonalIndex = 0;
+    secondDiagonalIndex = result[0].length - 1;
+
+
+    for (let i = 0; i < result[0].length; i++) {
+
+        result[i][firstDiagonalIndex]=firstDiagonal[i];
+        result[i][secondDiagonalIndex]=secondDiagonal[i];
+
+        firstDiagonalIndex++;
+        secondDiagonalIndex--;
+    }
+       
+    result.forEach(row => {
+        console.log(row.join(` `));
+    });
+    }
+    else {
+        matrix.forEach(row => {
+            console.log(row.join(` `));
+        });
+    }
+
+
+}
