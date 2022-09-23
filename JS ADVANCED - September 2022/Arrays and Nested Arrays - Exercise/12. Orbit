@@ -1,0 +1,86 @@
+function func(arr){
+
+
+    let matrixRows = arr[0];
+    let matrixCols = arr[1];
+    let starRow=arr[2];
+    let starCol=arr[3];
+    
+    function IsInside(row,col,matrixRows,matrixCols){
+        if(row>=0&&col>=0&&row<matrixRows&&col<matrixCols){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+let matrix = [];
+
+for (let row = 0; row < matrixRows; row++) {
+    matrix[row]=[];
+    for (let j = 0; j < matrixCols; j++) {
+        matrix[row][j]=false;  
+    }
+    
+}
+matrix[starRow][starCol]=1;
+
+for (let i = 1; i <= matrix.length; i++) {
+    
+    for(let row=0;row < matrix.length;row++){
+        for(let col=0;col < matrix[row].length;col++){
+            let el = matrix[row][col];
+            if(el===i){
+                
+                if(IsInside(row-1,col,matrixRows,matrixCols)){
+                    if(matrix[row-1][col]===false){
+                        matrix[row-1][col] =i+1; 
+                    }
+                }
+                if(IsInside(row-1,col+1,matrixRows,matrixCols)){
+                    if(matrix[row-1][col+1]===false){
+                        matrix[row-1][col+1] =i+1; 
+                    }
+                }
+                if(IsInside(row,col+1,matrixRows,matrixCols)){
+                    if(matrix[row][col+1]===false){
+                        matrix[row][col+1] =i+1; 
+                    }
+                }
+                if(IsInside(row+1,col+1,matrixRows,matrixCols)){
+                    if(matrix[row+1][col+1]===false){
+                        matrix[row+1][col+1] =i+1; 
+                    }
+                }
+                if(IsInside(row+1,col,matrixRows,matrixCols)){
+                    if(matrix[row+1][col]===false){
+                        matrix[row+1][col] =i+1; 
+                    }
+                }
+                if(IsInside(row+1,col-1,matrixRows,matrixCols)){
+                    if(matrix[row+1][col-1]===false){
+                        matrix[row+1][col-1] =i+1; 
+                    }
+                }
+                if(IsInside(row,col-1,matrixRows,matrixCols)){
+                    if(matrix[row][col-1]===false){
+                        matrix[row][col-1] =i+1; 
+                    }
+                }
+                if(IsInside(row-1,col-1,matrixRows,matrixCols)){
+                    if(matrix[row-1][col-1]===false){
+                        matrix[row-1][col-1] =i+1; 
+                    }
+                }
+
+            }
+        }
+    };
+
+}
+
+    matrix.forEach(row => {
+        console.log(row.join(` `));
+    });
+}
