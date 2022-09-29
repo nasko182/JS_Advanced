@@ -1,0 +1,31 @@
+function solve(input){
+
+    let arr =[];
+
+for (const element of input) {
+    let obj = {};
+
+    let el = element.split(` <-> `);
+
+    let town = el[0];
+    let population = Number(el[1]);
+
+    obj={
+        town: town,
+        population: Number(population)
+    }
+
+    if(arr.some(x=>x.town===town) ===false){
+        arr.push(obj);
+    }
+    else{
+        let first = arr.find(x=>x.town=town);
+        first.population += population;
+    }
+}
+for (const element of arr) {
+    console.log(`${element.town} : ${element.population}`)
+}
+
+
+}
