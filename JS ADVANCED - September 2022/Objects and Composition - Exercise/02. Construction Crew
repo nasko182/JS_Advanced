@@ -1,0 +1,8 @@
+function solve(obj) {
+
+    if (obj.dizziness === true) {
+        obj.levelOfHydrated+=(obj.weight/10)*obj.experience;
+        obj.dizziness=false;
+    }
+    return(obj);
+}
