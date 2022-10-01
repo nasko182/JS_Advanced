@@ -22,12 +22,21 @@ function solve(json){
     result+="</table>"
     console.log(result.trim());
 
-    function escape(value){
-        return value.toString()
-        .replace("<",`&lt;`)
-        .replace(`>`,`&gt;`)
-        .replace(`"`,`&quot;`)
-        .replace(`&`,`&amp;`);
+    function escape(value) {
+
+        return value
+            .toString()
+
+            .replace(/&/g, "&amp;")
+
+            .replace(/</g, "&lt;")
+
+            .replace(/>/g, "&gt;")
+
+            .replace(/"/g, "&quot;")
+
+            .replace(/'/g, "&#39;");
+
     }
 
 }
