@@ -1,0 +1,21 @@
+function solve(input) {
+
+    let collection = [];
+    for (const hero of input) {
+
+        let splitHero = hero.split(" / ");
+        let items =[];
+        if(splitHero.length===3){
+            items=splitHero[2].split(`, `)
+        }
+        let obj = {
+            name:splitHero[0],
+            level:Number(splitHero[1]),
+            items:items
+        }
+        
+        collection.push(obj);
+    }
+    let collJSON= JSON.stringify(collection);
+    console.log(collJSON);
+}
