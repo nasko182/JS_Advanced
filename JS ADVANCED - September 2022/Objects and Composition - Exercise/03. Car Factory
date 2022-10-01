@@ -1,0 +1,55 @@
+function solve(requires) {
+
+    let engineModels = {
+        small : {
+            power : 90,
+            volume : 1800
+        },
+        normal : {
+            power : 120,
+            volume : 2400
+        },
+        monster:{
+            power : 200,
+            volume : 3500
+        }
+    }
+    
+    let carriage ={
+        Hatchback: { type: 'hatchback', color: "" },
+        Coupe: { type: 'coupe', color: "" }
+    }
+
+    let car = {
+        model: requires.model,
+        engine: {},
+        carriage: {},
+        wheels:[]
+    }
+
+    if(requires.power<=90){
+        car.engine=engineModels.small;
+    }
+    else if(requires.power<=120){
+        car.engine=engineModels.normal;
+    }
+    else{
+        car.engine=engineModels.monster;
+    }
+
+    if(requires.carriage==='hatchback'){
+        car.carriage=carriage.Hatchback;
+        car.carriage.color=requires.color;
+    }
+    else{
+        car.carriage=carriage.Coupe;
+        car.carriage.color=requires.color;
+    }
+
+    if(requires.wheelsize%2===0){
+        requires.wheelsize--;
+    }
+    car.wheels.push(requires.wheelsize,requires.wheelsize,requires.wheelsize,requires.wheelsize);
+
+    return(car);
+}
