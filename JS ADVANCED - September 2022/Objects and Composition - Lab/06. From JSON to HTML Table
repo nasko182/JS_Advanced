@@ -1,0 +1,33 @@
+function solve(json){
+
+   let parsed = JSON.parse(json);
+
+    let result = `<table>\n` ;
+
+    let keys = Object.keys(parsed[0]);
+    result+=`   <tr>`;
+    for (const key of keys) {
+       result+=`<th>${escape(key.trim())}</th>`;
+    }
+    result+=`</tr>`;
+    result+="\n";
+    for (const obj of parsed) {
+        result+=`   <tr>`;
+        for (const key of Object.values(obj)) {
+            result+=`<td>${escape(key)}</td>`;
+        }
+        result+=`</tr>`;
+        result+="\n";
+    }
+    result+="</table>"
+    console.log(result.trim());
+
+    function escape(value){
+        return value.toString()
+        .replace("<",`&lt;`)
+        .replace(`>`,`&gt;`)
+        .replace(`"`,`&quot;`)
+        .replace(`&`,`&amp;`);
+    }
+
+}
