@@ -1,0 +1,33 @@
+function solve(input) {
+
+    let sorted = input.sort();
+
+    let objOfObj = {};
+
+    for (const obj of sorted) {
+        let firstLetter = obj[0];
+        let split = obj.split(` : `);
+
+        let product = split[0];
+        let price = split[1];
+
+        if(objOfObj[firstLetter]===undefined){
+            objOfObj[firstLetter]={};
+            objOfObj[firstLetter][product] = Number(price);
+        }
+        else{
+            objOfObj[firstLetter][product] = Number(price);
+        }
+
+    }
+    
+    for (const obj in objOfObj) {
+        console.log(obj);
+        for (const product in objOfObj[obj]) {
+           console.log(`  ${product}: ${objOfObj[obj][product]}`);
+        }
+    }
+
+
+    
+}
