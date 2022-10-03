@@ -1,0 +1,30 @@
+function solve() {
+
+    return {
+        mage: (name)=>{
+            let obj = {
+            name:name,
+            health:100,
+            mana:100,
+            cast:(spellName)=>{
+                obj.mana-=1;
+                console.log(`${obj.name} cast ${spellName}`)
+            }
+            }
+            return obj;
+        },
+        fighter:(name)=>{
+            let obj={
+            name,
+            health:100,
+            stamina:100,
+            fight:()=>{
+                obj.stamina--;
+                console.log(`${obj.name} slashes at the foe!`)
+            }
+            }
+            return obj;
+        }
+    }
+    
+}
