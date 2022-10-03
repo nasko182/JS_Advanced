@@ -1,0 +1,27 @@
+function createSortedList() {
+ let obj = {};
+
+ obj = {
+
+    collection : [],
+    add : (element)=>{
+        obj.collection.push(element);
+        obj.collection.sort((a,b)=>a-b);
+        obj.size++;
+    },
+    remove : (index)=>{
+        if(obj.collection[index]!==undefined){
+            obj.collection.splice(index,1);
+        obj.size--;
+        }
+    },
+    get : (index)=>{
+        if(obj.collection[index]!==undefined){
+        return obj.collection[index];
+        }
+    },
+    size : 0
+    };
+    size = obj.collection.length;
+ return obj;
+}
