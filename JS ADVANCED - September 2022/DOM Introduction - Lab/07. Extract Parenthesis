@@ -1,0 +1,21 @@
+function extract(content) {
+    let text = document.getElementById(content).innerText;
+    let result = [];
+
+    for (let i =0;i<text.length;i++) {
+        let char = text[i];
+        if (char===`(`){
+            //  debugger;
+            let word = ``;
+            while(char!==`)`){
+                i++;
+                char = text[i];
+                if(char!==`)`){
+                    word+=char;
+                }
+            }
+            result.push(word.trimEnd(`)`));
+        }
+    }
+    return (result.join(`; `));
+}
