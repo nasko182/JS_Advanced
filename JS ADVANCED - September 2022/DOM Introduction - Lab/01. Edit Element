@@ -1,1 +1,10 @@
+function editElement(element, match, replacer) {
+    
+   let text = element.textContent;
 
+   let matcher = RegExp(match,`g`);
+
+   let edited = text.replace(matcher,replacer)
+
+   element.textContent=edited;
+}
