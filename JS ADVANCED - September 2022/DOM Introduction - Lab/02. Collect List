@@ -1,0 +1,17 @@
+function extractText() {
+    let elements = document.querySelectorAll(`li`);
+
+    let arr = [...elements];
+
+    let text = ``;
+
+    for (const li of arr) {
+        text+=li.innerText+`\n`;
+    }
+    text = text.trim();
+
+    let result = document.getElementById(`result`);
+
+    result.textContent = text;
+    // console.log(text);
+}
