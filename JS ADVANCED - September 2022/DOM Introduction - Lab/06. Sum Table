@@ -1,0 +1,15 @@
+function sumTable() {
+    let table = document.querySelector(`table`);
+
+    let arr = [...table.querySelectorAll(`td`)];
+
+    let sum = 0;
+
+    for (let i = 1; i < arr.length; i+=2) {
+        const el = arr[i].innerText;
+      
+        sum+=Number(el);
+    }
+
+    document.getElementById(`sum`).textContent=sum;
+}
