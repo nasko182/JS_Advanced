@@ -1,0 +1,22 @@
+function solve() {
+   document.querySelector('#searchBtn').addEventListener('click', onClick);
+
+   function onClick() {
+      let search = document.getElementById(`searchField`).value;
+      let table = document.querySelector(`tbody`).children;
+
+      for(const tr of table){
+        tr.className=``;
+      }
+      for (const tr of table) {
+         for (const cell of tr.cells) {
+            if(cell.textContent.toLowerCase().includes(search.toLowerCase())){
+               tr.className = "select";
+            }
+         }
+      }
+
+      document.getElementById(`searchField`).value=``;
+
+   }
+}
