@@ -1,0 +1,19 @@
+ function search() {
+   let text =document.getElementById(`searchText`).value;
+   let words = document.querySelectorAll(`ul#towns li`);
+   let matches = 0;
+
+   for (const word of words) {
+      word.style.textDecoration = "none";
+         word.style.fontWeight = "normal";
+   }
+   for (const word of words) {
+      if(word.innerText.includes(text)){
+         word.style.textDecoration = "underline";
+         word.style.fontWeight = "bolder";
+         matches++;
+      }
+   }
+
+   document.getElementById(`result`).innerText=`${matches} matches found`;
+}
