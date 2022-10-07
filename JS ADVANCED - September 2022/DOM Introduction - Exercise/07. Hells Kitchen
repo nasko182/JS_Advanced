@@ -1,0 +1,72 @@
+function solve() {
+   document.querySelector('#btnSend').addEventListener('click', onClick);
+
+   function onClick () {
+      let input=document.querySelector(`#inputs textarea`).value; 
+      input = input.slice(2,input.length-2);
+      let restaurants = input.split('","');
+      let separated = [];
+
+      for (const restaurant of restaurants) {
+         if (!separated.some(r=>r.name===restaurant.split(` - `)[0])){
+            let obj = {};
+         obj.name = restaurant.split(` - `)[0];
+         obj.workers = [];
+         for (const worker of restaurant.split(` - `)[1].split(`, `)) {
+            let element ={};
+            element.name = worker.split(` `)[0];
+            element.salary = worker.split(` `)[1];
+
+            obj.workers.push(element);
+         }
+         separated.push(obj);
+         }
+         else{
+            let currRes = separated.find(r=>r.name===restaurant.split(` - `)[0]);
+               for (const worker of restaurant.split(` - `)[1].split(`, `)) {
+                  let element ={};
+                  element.name = worker.split(` `)[0];
+                  element.salary = worker.split(` `)[1];
+      
+                  currRes.workers.push(element);
+               }
+            
+         }
+      }
+      restaurants =[];
+      for (let restaurant of separated) {
+         let sum = 0;
+         let best = Number.MIN_SAFE_INTEGER;
+         // debugger;
+         for (const worker of restaurant.workers) {
+            sum+= Number(worker.salary);
+            if(worker.salary>best){
+               best=Number(worker.salary);
+            }
+         }
+         restaurant.averageSalary = sum/restaurant.workers.length;
+         restaurant.bestSalary = best;
+         restaurants.push(restaurant);
+      }
+
+      let bestRestaurant = {
+         averageSalary:Number.MIN_SAFE_INTEGER
+      };
+
+      for (const restaurant of restaurants) {
+         if(restaurant.averageSalary>bestRestaurant.averageSalary){
+            bestRestaurant = restaurant;
+         }
+      }
+      
+      document.querySelector(`#outputs p`).innerText = `Name: ${bestRestaurant.name} Average Salary: ${bestRestaurant.averageSalary.toFixed(2)} Best Salary: ${bestRestaurant.bestSalary.toFixed(2)}`
+      let workers=[...bestRestaurant.workers];
+      let sortedWorkers=workers.sort((a,b) => b.salary-a.salary );
+
+      for (const worker of sortedWorkers) {
+         document.querySelector(`#workers p`).innerText +=` Name: ${worker.name} With Salary: ${worker.salary}`;
+      }
+   }
+
+
+}
