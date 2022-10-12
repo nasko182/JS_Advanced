@@ -1,0 +1,19 @@
+function validate() {
+    
+    let element = document.getElementById(`email`);
+    let isValid = false;
+    
+    element.addEventListener(`change`,(event)=>{
+        let input = event.target.value ;
+        let regex = /^[a-z]+@[a-z]+.[a-z]+$/g;
+        let result = input.match(regex);
+        if(result=== null){
+            event.target.setAttribute(`class`,`error`);
+        }
+        else{
+            event.target.removeAttribute(`class`);
+        }
+        // console.log(result);
+
+    });
+}
