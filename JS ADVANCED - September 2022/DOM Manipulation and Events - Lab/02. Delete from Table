@@ -1,0 +1,25 @@
+function deleteByEmail() {
+    let inputText = document.getElementsByName(`email`)[0].value;
+    let list = document.getElementById(`customers`);
+    let isFound = false;
+    // debugger;
+    let rows = Array.from(list.childNodes[3].children);
+
+    for (const row of rows) {
+        let email = row.children[1].textContent;
+
+        if (inputText === email) {
+            row.remove();
+            isFound = true;
+            // document.getElementsByName(`email`)[0].value = ``;
+        }
+
+    }
+    if (isFound) {
+        document.getElementById(`result`).textContent = ` Deleted.`;
+    }
+    else {
+        document.getElementById(`result`).textContent = "Not found.";
+    }
+
+}
