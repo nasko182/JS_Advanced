@@ -1,0 +1,12 @@
+function addItem() {
+    let inputText = document.getElementById(`newItemText`).value ;
+    let list = document.getElementById(`items`);
+
+    let newElement = document.createElement(`li`);
+
+    newElement.textContent=inputText;
+
+    list.appendChild(newElement);
+    document.getElementById(`newItemText`).value = ``;
+
+}
