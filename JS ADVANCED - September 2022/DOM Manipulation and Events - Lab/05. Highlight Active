@@ -1,0 +1,16 @@
+function focused() {
+    let sections = document.querySelectorAll(`body div input`);
+    let arr = Array.from(sections);
+
+    for (const section of arr) {
+        section.addEventListener(`focus`,(event)=>{
+
+            section.parentElement.setAttribute(`class`,`focused`);
+        });
+        section.addEventListener(`blur`,(event)=>{
+
+            section.parentElement.removeAttribute("class");
+        });
+    }
+    
+}
