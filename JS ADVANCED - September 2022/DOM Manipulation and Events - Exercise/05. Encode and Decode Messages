@@ -1,83 +1,30 @@
-function solve() {
-  let btn = document.querySelector(`button`);
-  btn.addEventListener(`click`,(event)=>{
-    let div = document.getElementById(`exercise`);
-    let textarea = div.querySelector(`textarea`);
-    let text = textarea.value;
-    let table = document.querySelector(`table tbody`);
-    let elements = JSON.parse(text);
-    for (let i = 0; i < elements.length; i++) {
-    let tr = document.createElement(`tr`);
+<!DOCTYPE html>
+<html lang="en">
 
-    let tdImg = document.createElement(`td`);
-    let img = document.createElement(`img`);
-    img.setAttribute(`src`,elements[i].img);
-    tdImg.appendChild(img);
-    tr.appendChild(tdImg);
+<head>
+	<link rel="stylesheet" href="template.css">
+	<title>Encode and Decode Messages</title>
+</head>
 
-    let tdName = document.createElement(`td`);
-    let name = document.createElement(`p`);
-    let textName = document.createTextNode(elements[i].name);
-    name.appendChild(textName)
-    tdName.appendChild(name);
-    tr.appendChild(tdName);
+<body>
+	<div id="container">
+		<main id="main">
+			<div>
+				<p>Message</p>
+				<textarea placeholder="Write your message here..."></textarea>
+				<button>Encode and send it</button>
+			</div>
+			<div>
+				<p>Last received message</p>
+				<textarea disabled placeholder="No messages..."></textarea>
+				<button>Decode and read it</button>
+			</div>
+		</main>
+	</div>
+	<script src="./app.js"></script>
+	<script>
+		window.onload = encodeAndDecodeMessages();
+	</script>
+</body>
 
-    let tdPrice = document.createElement(`td`);
-    let price = document.createElement(`p`);
-    let textPrice = document.createTextNode(elements[i].price);
-    price.appendChild(textPrice);
-    tdPrice.appendChild(price);
-    tr.appendChild(tdPrice);
-
-    let tdDecFactor = document.createElement(`td`);
-    let decFactor = document.createElement(`p`);
-    let textDecFactor = document.createTextNode(elements[i].decFactor);
-    decFactor.appendChild(textDecFactor);
-    tdDecFactor.appendChild(textDecFactor);
-    tr.appendChild(tdDecFactor);
-
-    let tdMark = document.createElement(`td`); 
-    let mark = document.createElement(`input`);
-    mark.type=`checkbox`;
-    tdMark.appendChild(mark);
-    tr.appendChild(tdMark);
-
-    
-    table.appendChild(tr);
-      
-    }
-
-  });
-
-  let buyBtn = document.querySelectorAll(`button`)[1];
-  buyBtn.addEventListener(`click`,(event)=>{
-    let parent = event.target.parentElement;
-    let textarea = parent.getElementsByTagName(`textarea`)[1];
-    let furniture =[];
-    let totalPrice =0;
-    let avgDecFactor =0;
-    let counter =0;
-    let table = Array.from(document.querySelector(`table tbody`).children);
-    
-    for (let i = 0; i < table.length; i++) {
-      let tr = Array.from(table[i].querySelectorAll(`td`));
-      let checkbox = document.querySelectorAll(`#exercise input`)[i];
-      console.log(tr);
-      if (checkbox.checked){
-        let name = tr[1].textContent;
-        furniture.push(name);
-        let price = Number(tr[2].textContent);
-        totalPrice+=price;
-        let decFactor = Number(tr[3].textContent);
-        avgDecFactor += decFactor;
-        counter++;
-      }
-      
-    }
-
-    textarea.value = `Bought furniture: ${furniture.join(`, `)}\n`;
-    textarea.value += `Total price: ${totalPrice.toFixed(2)}\n`;
-    textarea.value += `Average decoration factor: ${avgDecFactor/counter}`;
-
-  });
-}
+</html>
