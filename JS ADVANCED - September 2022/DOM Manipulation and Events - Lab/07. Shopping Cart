@@ -1,0 +1,30 @@
+function solve() {
+   let body = document.querySelector(`body`);
+
+   let totalMoney = 0;
+   let list = [];
+   let btns = Array.from(body.querySelectorAll(`button.add-product`));
+   let result = document.querySelector(`textarea`);
+   body.addEventListener(`click`, (event) => {
+      if (btns.includes(event.target)) {
+         let parent = event.target.parentElement.parentElement;
+         let name = parent
+            .querySelector(`div.product-title`).textContent;
+            if(!list.includes(name)){
+               list.push(name);
+            }
+         let money = Number(parent
+            .querySelector(`div.product-line-price`).textContent).toFixed(2);
+         totalMoney += Number(money);
+         result.textContent += `Added ${name} for ${money} to the cart.\n`;
+      }
+      else if (event.target.textContent === `Checkout`) {
+         result.textContent+=`You bought ${list.join(`, `)} for ${totalMoney.toFixed(2)}.`
+         for (const btn of btns) {
+            btn.disabled=true;
+         }
+         event.target.disabled=true;
+      }
+   });
+
+}
