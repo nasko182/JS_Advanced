@@ -1,0 +1,23 @@
+function lockedProfile() {
+    let main = document.getElementById(`main`);
+
+    main.addEventListener(`click`, (event) => {
+        if (event.target.nodeName === `BUTTON`) {
+            let parent = event.target.parentElement;
+            let isLocked = parent.querySelector(`input`).checked;
+            if (!isLocked) {
+                if (event.target.textContent === `Show more`) {
+                    event.target.textContent = `Hide it`;
+                    let div = parent.querySelector(`div`);
+                    div.style.display = `inline`;
+                }
+                else if(event.target.textContent===`Hide it`){
+                    event.target.textContent = `Show more`;
+                    let div = parent.querySelector(`div`);
+                    div.style.display = `none`;
+                }
+            }
+
+        }
+    });
+}
