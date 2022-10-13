@@ -22,21 +22,21 @@ function attachEventsListeners() {
             }
             else if(event.target.previousElementSibling===hoursInput){
                 hours = hoursInput.value;
-                days = Math.floor(hours/24);
+                days = (hours/24);
                 minutes = hours*60;
                 seconds = minutes*60;
             }
             else if(event.target.previousElementSibling===minutesInput){
                 minutes = minutesInput.value;
-                hours = Math.floor(minutes/60);
-                days = Math.floor(minutes/1440);
+                hours = minutes/60;
+                days = minutes/1440;
                 seconds = minutes*60;
             }
             else if(event.target.previousElementSibling===secondsInput){
                 seconds = secondsInput.value;
-                minutes = Math.floor(seconds/60);
-                hours = Math.floor(seconds/3600);
-                days = Math.floor(seconds/86400);
+                minutes = seconds/60;
+                hours = (seconds/3600);
+                days = (seconds/86400);
             }
             secondsInput.value = seconds;
             minutesInput.value = minutes;
