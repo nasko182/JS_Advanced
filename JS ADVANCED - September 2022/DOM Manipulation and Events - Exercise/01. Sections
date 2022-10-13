@@ -1,0 +1,15 @@
+function create(words) {
+   let body = document.querySelector(`#content`);
+   for (const word of words) {
+      let section = document.createElement(`div`);
+      let p = document.createElement(`p`);
+      p.textContent =word;
+      p.style.display=`none`;
+      section.appendChild(p);
+
+      section.addEventListener(`click`,()=>{
+         p.style.display =`inline`;
+      });
+      body.appendChild(section);
+   }
+}
