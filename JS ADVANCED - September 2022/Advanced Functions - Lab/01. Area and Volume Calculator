@@ -1,0 +1,13 @@
+function solve(area, vol, input) {
+    let result =[];
+    input = JSON.parse(input);
+    for (const el of input) {
+        areaRes = area.call(el);
+        volRes = vol.call(el);
+        result.push({
+            area:areaRes,
+            volume: volRes
+        })
+    }
+    return (result);
+}
