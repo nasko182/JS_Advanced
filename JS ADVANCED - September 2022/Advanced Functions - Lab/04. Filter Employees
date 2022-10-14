@@ -1,0 +1,31 @@
+function solve(input, search) {
+    let objs = JSON.parse(input);
+    let res = [];
+    if (search !== `all`) {
+        let value = search.split(`-`)[1];
+        let counter = 0;
+        let prop = search.split(`-`)[0];
+
+        for (const obj of objs) {
+            let str = ``;
+            if (obj[prop] === value) {
+                str += `${counter}. ${obj.first_name} ${obj.last_name} - ${obj.email}`;
+                counter++;
+                res.push(str);
+            }
+        }
+    }
+    else {
+        let counter = 0;
+        for (const obj of objs) {
+            let str = ``;
+
+            str += `${counter}. ${obj.first_name} ${obj.last_name} - ${obj.email}`;
+            counter++;
+
+            res.push(str);
+        }
+    }
+
+    console.log(res.join(`\n`));
+}
