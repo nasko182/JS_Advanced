@@ -1,0 +1,7 @@
+function solution(n){
+    let number = n;
+
+    return function(num){
+        return number+num;
+    }
+}
