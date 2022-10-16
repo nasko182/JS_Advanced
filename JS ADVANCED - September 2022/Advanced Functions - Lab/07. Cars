@@ -1,0 +1,72 @@
+function solve(input){
+
+    let res =[];
+    for (const el of input) {
+        ele = el.split(` `);
+        let cmd = ele[0];
+
+        if(cmd===`create`&&ele.length===2){
+            let name = ele[1];
+            let obj = {
+                name: name
+            }
+            res.push(obj);
+        }
+        else if(cmd === `create`&& ele.length===4){
+            let obj ={
+                proto:res.find(el=>el.name==ele[3]),
+                name:ele[1]
+            }
+            res.push(obj);
+        }
+        else if(cmd===`set`){
+            let obj = res.find(el=>el.name===ele[1]);
+            obj[ele[2]]=ele[3]
+        }
+        else if(cmd===`print`){
+            let str = ``;
+            let obj = res.find(el=>el.name==ele[1]);
+            let obj1={};
+            for (const key in obj) {
+                if (Object.hasOwnProperty.call(obj, key)) {
+                    if(key !== `name`){
+                        if(key===`proto`){
+                            obj1= {...obj[`proto`]};
+                        }
+                        else{
+                            str+=`${key}:${obj[key]},`;
+                        }
+                    }
+                    
+                }
+            }
+            let obj2 = {};
+            if(obj1!={}){
+                for (const key in obj1) {
+                    if (Object.hasOwnProperty.call(obj1, key)) {
+                        if(key !== `name`){
+                            if(key===`proto`){
+                                obj2= {...obj1[`proto`]};
+                            }
+                            else{
+                                str+=`${key}:${obj1[key]},`;
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            if(obj2!={}){
+                for (const key in obj2) {
+                    if (Object.hasOwnProperty.call(obj2, key)) {
+                        if(key !== `name`){
+                            str+=`${key}:${obj2[key]},`;
+                        }
+                        
+                    }
+                }
+            }
+            console.log(str.slice(0,str.length-1));
+        }
+    }
+}
