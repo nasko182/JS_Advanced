@@ -1,0 +1,26 @@
+function solve(...args) {
+    let counters = {};
+    for (const arg of args) {
+        let type = typeof (arg);
+        console.log(`${type}: ${arg}`);
+        if (counters[type] === undefined) {
+            counters[type] = 1;
+        }
+        else {
+            counters[type]++;
+        }
+    }
+    let sortable = [];
+    for (var counter in counters) {
+        sortable.push([counter, counters[counter]]);
+    }
+
+    sortable.sort(function (a, b) {
+        return b[1] - a[1];
+    });
+    for (const arr of sortable) {
+        let type = arr[0];
+        let value = arr[1];
+        console.log(`${type} = ${value}`);
+    }
+}
