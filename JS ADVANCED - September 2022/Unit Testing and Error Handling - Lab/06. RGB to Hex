@@ -1,0 +1,106 @@
+describe(`rgbToHexColor`, () => {
+    describe(`correct number of args`,()=>{
+        it(`should take exactly three integers numbers`,()=>{
+            let red = 122;
+            let green = 255;
+            let blue = 0;
+    
+            let result = rgbToHexColor(red,green,blue);
+    
+            expect(result).to.be.equal(`#7AFF00`);
+    
+        });
+        it(`should return undefined with two args`,()=>{
+            let red = 122;
+            let green = 255;
+            
+    
+            let result = rgbToHexColor(red,green);
+    
+            expect(result).to.be.equal(undefined);
+    
+        });
+        
+    });
+    describe(`valid args values`,()=>{
+        it(`should return undefined if red is -1`,()=>{
+            let red = -1;
+            let green = 255;
+            let blue = 0;
+            
+    
+            let result = rgbToHexColor(red,green,blue);
+    
+            expect(result).to.be.equal(undefined);
+    
+        });
+        it(`should return undefined if red is 256`,()=>{
+            let red = -1;
+            let green = 255;
+            let blue = 0;
+            
+    
+            let result = rgbToHexColor(red,green,blue);
+    
+            expect(result).to.be.equal(undefined);
+    
+        });
+        it(`should return undefined if green is -1`,()=>{
+            let red = 1;
+            let green = -1;
+            let blue = 0;
+            
+    
+            let result = rgbToHexColor(red,green,blue);
+    
+            expect(result).to.be.equal(undefined);
+    
+        });
+        it(`should return undefined if green is 256`,()=>{
+            let red = 3;
+            let green = 256;
+            let blue = 0;
+            
+    
+            let result = rgbToHexColor(red,green,blue);
+    
+            expect(result).to.be.equal(undefined);
+    
+        });
+        it(`should return undefined if red is -1`,()=>{
+            let red = 11;
+            let green = 255;
+            let blue = -1;
+            
+    
+            let result = rgbToHexColor(red,green,blue);
+    
+            expect(result).to.be.equal(undefined);
+    
+        });
+        it(`should return undefined if red is 256`,()=>{
+            let red = 1;
+            let green = 255;
+            let blue = 256;
+            
+    
+            let result = rgbToHexColor(red,green,blue);
+    
+            expect(result).to.be.equal(undefined);
+    
+        });
+    });
+    describe(`valid output`,()=>{
+        it(`Return the same color in hexadecimal format as a string `,()=>{
+            let red = 122;
+            let green = 255;
+            let blue = 0;
+    
+            let result = rgbToHexColor(red,green,blue);
+    
+            expect(result).to.be.equal(`#7AFF00`);
+    
+        });
+    });
+    
+});
