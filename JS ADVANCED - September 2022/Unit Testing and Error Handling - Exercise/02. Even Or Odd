@@ -1,0 +1,20 @@
+describe(`isOddOrEven`,()=>{
+    it('should return undefine if arg is not a string',()=>{
+        let arg = 34;
+        let result = isOddOrEven(arg);
+
+        expect(result).to.be.equal(undefined);
+    });
+    it('should return odd',()=>{
+        let arg = `odd`;
+        let result = isOddOrEven(arg);
+
+        expect(result).to.be.equal(`odd`);
+    });
+    it('should return even',()=>{
+        let arg = `even`;
+        let result = isOddOrEven(arg);
+
+        expect(result).to.be.equal(`even`);
+    });
+});
