@@ -1,0 +1,17 @@
+function validate() {
+    let email = document.getElementById(`email`);
+
+    email.addEventListener(`change`,()=>{
+        let value = email.value;
+        let emailRegex = /[a-z]+@[a-z]+\.[a-z]+/g;
+        let match = emailRegex.test(value);
+        console.log(email);
+        if (!match){
+           email.classList.add(`error`);
+        }
+        else{
+            email.classList.remove(`error`);
+        }
+        
+    })
+}
