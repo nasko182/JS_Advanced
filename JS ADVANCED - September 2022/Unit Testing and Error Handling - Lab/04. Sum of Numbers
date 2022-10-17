@@ -1,0 +1,10 @@
+describe(`sum`, () => {
+    it(`should return the sum of the values of all elements`,()=>{
+        let arr = [1,2,3];
+
+        let result = sum(arr);
+
+        expect(result).to.be.equal(6);
+    });
+    
+});
