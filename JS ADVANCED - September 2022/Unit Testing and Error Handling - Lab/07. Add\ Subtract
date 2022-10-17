@@ -1,0 +1,69 @@
+describe(`createCalculator`, () => {
+    it(`Return a module (object), containing the function add()as property`,()=>{
+
+        let obj = createCalculator();
+
+        expect(obj.add!==undefined).to.be.true;
+    });
+    it(`Return a module (object), containing the function subtract()as property`,()=>{
+        let obj = createCalculator();
+
+        expect(obj.subtract!==undefined).to.be.true;
+    });
+    it(`Return a module (object), containing the function get()as property`,()=>{
+        let obj = createCalculator();
+
+        expect(obj.get!==undefined).to.be.true;
+    });
+
+
+    it(`Keep an internal sum that can’t be modified from the outside`,()=>{
+        let result = createCalculator();
+
+        result.add(4);
+        result.add(7);
+
+        expect(result.get()).to.be.equal(11);
+    });
+
+    it(`The function add() take a parameter that can be parsed as a number`,()=>{
+        let result = createCalculator();
+
+        result.add(`4`)
+
+        expect(result.get()).to.be.equal(4);
+    });
+    it(`The function subtract() take a parameter that can be parsed as a number`,()=>{
+        let result = createCalculator();
+
+        result.add(`4`)
+        result.subtract(`2`);
+
+        expect(result.get()).to.be.equal(2);
+    });
+    it(`The function add() should return Nan if parameter that can't be parsed as a number`,()=>{
+        let result = createCalculator();
+
+        result.add(`NaN`)
+
+        expect(result.get()).to.be.NaN;
+    });
+    it(`The function subtract() should return Nan if parameter that can't be parsed as a number`,()=>{
+        let result = createCalculator();
+
+        result.subtract(`NaN`)
+
+        expect(result.get()).to.be.NaN;
+    });
+
+    it(`The function get() returns the value of the internal sum`,()=>{
+        let result = createCalculator();
+
+        result.add(`4`)
+        result.subtract(`2`);
+
+        expect(result.get()).to.be.equal(2);
+    });
+
+
+})
