@@ -1,0 +1,67 @@
+describe(`lookupChar`,()=>{
+    it(`should return undefined if arg string isn't an string`,()=>{
+
+        let string = 234456;
+        let index = 3;
+
+        let result = lookupChar(string,index);
+
+        expect(result).to.be.equal(undefined);
+    });
+    it(`should return undefined if arg index isn't an number`,()=>{
+
+        let string = `string`;
+        let index = `3`;
+
+        let result = lookupChar(string,index);
+
+        expect(result).to.be.equal(undefined);
+    });
+    it(`should return undefined if arg index isn't an integer number`,()=>{
+
+        let string = `string`;
+        let index = 3.3;
+
+        let result = lookupChar(string,index);
+
+        expect(result).to.be.equal(undefined);
+    });
+
+    it(`should return Incorrect index if arg index is <0`,()=>{
+
+        let string = `string`;
+        let index = -3;
+
+        let result = lookupChar(string,index);
+
+        expect(result).to.be.equal(`Incorrect index`);
+    });
+    it(`should return Incorrect index if arg index is >string length`,()=>{
+
+        let string = `string`;
+        let index = 30;
+
+        let result = lookupChar(string,index);
+
+        expect(result).to.be.equal(`Incorrect index`);
+    });
+
+    it(`should return char at index`,()=>{
+
+        let string = `string`;
+        let index = 3;
+
+        let result = lookupChar(string,index);
+
+        expect(result).to.be.equal(`i`);
+    });
+    it(`should return char at index`,()=>{
+
+        let string = `string`;
+        let index = 5;
+
+        let result = lookupChar(string,index);
+
+        expect(result).to.be.equal(`g`);
+    });
+});
