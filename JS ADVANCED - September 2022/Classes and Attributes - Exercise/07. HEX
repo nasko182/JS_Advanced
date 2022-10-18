@@ -1,0 +1,36 @@
+class Hex {
+    constructor(value) {
+        this.value=value;
+    }
+    valueOf(){
+        return this.value;
+    }
+    toString(){
+        let hexString = this.value.toString(16);
+        return `0x`+hexString.toUpperCase();
+    }
+    plus(num){
+        let sum =0;
+        if(num instanceof Hex){
+            sum = num.value+this.value;
+        }
+        else{
+            sum= num+this.value;
+        }
+        return new Hex(sum);
+    }
+    minus(num){
+        let res =0;
+        if(num instanceof Hex){
+            res = this.value-num.value;
+        }
+        else{
+            res= this.value-num;
+        }
+        return new Hex(res);
+    }
+    parse(input){
+        let yourNumber = parseInt(input, 16);
+        return yourNumber;
+    }
+}
