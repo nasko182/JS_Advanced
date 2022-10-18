@@ -1,0 +1,27 @@
+function create(input){
+    let juices = new Map();
+    let bottles = new Map();
+
+    for (const juice of input) {
+        let name = juice.split(` => `)[0];
+        let quantity = Number(juice.split(` => `)[1]);
+
+        if(juices.has(name)){
+            quantity+= Number(juices.get(name));
+        }
+        juices.set(name,quantity);
+        while(juices.get(name)>=1000){
+            let value = juices.get(name);
+            value-=1000;
+            let quantity =1;
+            if(bottles.has(name)){
+                quantity += Number(bottles.get(name));
+            }
+            bottles.set(name,quantity);
+            juices.set(name,value);
+        }
+    }
+    for (const [key,value] of bottles) {
+        console.log(key+` => `+value);
+    }
+}
