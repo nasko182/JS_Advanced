@@ -1,0 +1,15 @@
+class Point{
+    constructor(x,y){
+        this.x=x;
+        this.y=y;
+    }
+    static distance(p1,p2){
+        let p1X= Number(p1.x);
+        let p1Y= p1.y;
+
+        let p2X=p2.x;
+        let p2Y=p2.y;
+
+        return  Math.sqrt(((p2X-p1X)**2)+((p2Y-p1Y)**2))  
+    }
+}
