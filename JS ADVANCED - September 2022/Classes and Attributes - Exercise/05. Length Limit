@@ -1,0 +1,34 @@
+class Stringer {
+    constructor(string, length) {
+        this.innerString =string;
+        this.innerLength=length;
+    }
+
+    increase(length){
+        this.innerLength+=length;
+    };
+
+    decrease(length){
+        this.innerLength-=length;
+    };
+
+    set innerLength(value){
+        if(value<0){
+            value=0
+        }
+        this._innerLength=value;
+    }
+    get innerLength(){
+        return this._innerLength;
+    }
+
+    toString(){
+        if(this.innerLength<this.innerString.length){
+            return this.innerString.slice(0,this.innerLength);
+        }
+        else{
+            return this.innerString;
+        }
+    }
+
+}
