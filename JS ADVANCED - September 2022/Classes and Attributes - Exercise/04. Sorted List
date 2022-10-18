@@ -1,0 +1,28 @@
+class List {
+    constructor() {
+        this.arr = [];
+        this.size = this.arr.length;
+    }
+
+
+    add (num){
+        this.arr.push(num);
+    };
+    remove(index){
+        if (index < this.arr.length) {
+            let sorted = this.arr.sort((a, b) => a - b);
+            let removed = sorted.filter(el=>this.arr.indexOf(el)!==index);
+            this.arr=removed;
+        }
+    };
+    get(index){
+        if (index < this.arr.length) {
+            let sorted = this.arr.sort((a, b) => a - b);
+            return sorted[index];
+        }
+    };
+
+
+    
+    
+}
