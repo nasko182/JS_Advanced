@@ -1,0 +1,27 @@
+(function solve(){
+    Array.prototype.last = function(){
+        return this[this.length-1];
+    }
+    Array.prototype.skip = function(n){
+        let result = this.slice(n,this.length);
+        return result;
+    }
+    Array.prototype.take=function(n){
+        let result = this.slice(0,n);
+        return result;
+    }
+    Array.prototype.sum=function(){
+        let sum = 0;
+        for (const el of this) {
+            sum+=el;
+        }
+        return sum;
+    }
+    Array.prototype.average=function(){
+        let sum = 0;
+        for (const el of this) {
+            sum+=el;
+        }
+        return sum/this.length;
+    }
+})();
