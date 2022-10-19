@@ -1,0 +1,42 @@
+function combo (){
+    class Person{
+        constructor(name,email){
+            this.name= name;
+            this.email=email;
+        } 
+        toString(){
+            let result = `${this.constructor.name} (`;
+            let props = Object.getOwnPropertyNames(this);
+
+            for (const prop of props) {
+                result+=`${prop}: ${this[prop]}, `
+            }
+            result = result.slice(0,result.length-2);
+            result+=`)`;
+
+            return result;
+        }
+    }
+    class Teacher extends Person {
+        constructor(name,email,subject){
+            super(name,email);
+            this.subject=subject;
+        }
+    }
+
+    class Student extends Person{
+        constructor(name,email,course){
+            super(name,email);
+            this.course=course;
+        }
+    }
+    // let person = new Person(`nasko`,`email`);
+    // let teacher = new Teacher(`nasko`,`email`,`subject`);
+    // let student = new Student(`nasko`,`email`,`course`)
+    // console.log(person.toString());
+    // console.log(teacher.toString());
+    // console.log(student.toString());
+    return {
+        Person,Teacher,Student
+    }
+}
