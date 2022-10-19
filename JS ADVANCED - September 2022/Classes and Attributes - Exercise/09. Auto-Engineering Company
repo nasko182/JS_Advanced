@@ -1,0 +1,25 @@
+function create(input){
+let brands = new Map();
+for (const el of input) {
+    let models = new Map();
+    let brand = el.split(` | `)[0];
+    let model = el.split(` | `)[1];
+    let count = Number(el.split(` | `)[2]);
+    if(brands.has(brand)){
+        if(brands.get(brand).has(model)){
+            count += brands.get(brand).get(model);
+        }
+        models = brands.get(brand);
+    }
+    models.set(model,count);
+    brands.set(brand,models);
+    
+    
+} 
+for (const [key,value] of brands) {
+    console.log(key);
+    for (const [keys,values] of value) {
+        console.log(`###`+keys+` -> `+ values)
+    }
+}
+}
