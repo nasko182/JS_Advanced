@@ -1,0 +1,79 @@
+describe(`bookSelection`, () => {
+    describe(`isGenreSuitable`, () => {
+
+        it(`should return message if age is above or equal 12 and genre i Horror`, () => {
+
+            let result = bookSelection.isGenreSuitable(`Horror`, 12);
+
+            let message = `Books with Horror genre are not suitable for kids at 12 age`
+
+            expect(result).to.be.equal(message);
+        });
+        it(`should return message if age is above or equal 12 and genre is Thriller`, () => {
+
+            let result = bookSelection.isGenreSuitable(`Thriller`, 12);
+
+            let message = `Books with Thriller genre are not suitable for kids at 12 age`
+
+            expect(result).to.be.equal(message);
+        });
+        it(`should return message`, () => {
+
+            let result = bookSelection.isGenreSuitable(`Horror`, 13);
+
+            let message = `Those books are suitable`;
+
+            expect(result).to.be.equal(message);
+        });
+    });
+
+    describe(`isItAffordable`, () => {
+
+        it(`should throw an error if price is not number`, () => {
+            expect(()=>{bookSelection.isItAffordable(`12`,12)}).to.throw("Invalid input");
+        });
+        it(`should throw an error if budget is not number`, () => {
+            expect(()=>{bookSelection.isItAffordable(12,`12`)}).to.throw("Invalid input");
+        });
+        it(`should return message if budget is above price`, () => {
+            
+            let result = bookSelection.isItAffordable(12,11);
+            let message = `You don't have enough money`;
+
+            expect(result).to.be.equal(message);
+        });
+        it(`should return message if price is above budget`, () => {
+            
+            let result = bookSelection.isItAffordable(12,13);
+            let message = `Book bought. You have 1$ left`;
+
+            expect(result).to.be.equal(message);
+        });
+    });
+
+    describe(`suitableTitles`, () => {
+
+        it(`should throw an error array is not array`, () => {
+            expect(()=>{bookSelection.suitableTitles(`12`,`12`)}).to.throw(`Invalid input`) ;
+        });
+        it(`should throw an error genre is not string`, () => {
+            expect(()=>{bookSelection.suitableTitles([],12)}).to.throw(`Invalid input`) ;
+        });
+        it(`should return array`,()=>{
+            let arr = [{
+                title:`titanic`,
+                genre:`12`
+            },{
+                title:`sam`,
+                genre:`122`
+            }];
+            let actual = bookSelection.suitableTitles(arr,`12`);
+            let expected = [`titanic`];
+
+            expect(actual).deep.to.equal(expected);
+
+        });
+    });
+});
+
+
