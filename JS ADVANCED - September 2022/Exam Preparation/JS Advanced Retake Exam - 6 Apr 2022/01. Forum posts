@@ -1,0 +1,94 @@
+function solve() {
+    let publishBtn = document.getElementById(`publish-btn`);
+
+    publishBtn.addEventListener(`click`, () => {
+
+        let h4Title = document.getElementById(`post-title`);
+        let pCategoryText = document.getElementById(`post-category`);
+        let pContentText = document.getElementById(`post-content`);
+
+        if (h4Title.value !== ``
+            && pCategoryText.value !== ``
+            && pContentText.value !== ``) {
+            let ul = document.getElementById(`review-list`);
+            let li = document.createElement(`li`);
+            li.classList.add(`rpost`);
+            let article = document.createElement(`article`);
+            let h4 = document.createElement(`h4`);
+            let pCategory = document.createElement(`p`);
+            let pContent = document.createElement(`p`);
+
+            pContent.textContent = pContentText.value;
+            pContentText.value = ``;
+
+            pCategory.textContent = pCategoryText.value;
+            pCategoryText.value = ``;
+
+            h4.textContent = h4Title.value;
+            h4Title.value = '';
+
+            let edit = document.createElement(`button`);
+            let approve = document.createElement(`button`);
+
+            edit.classList.add(`action-btn`);
+            edit.classList.add(`edit`);
+            edit.textContent = `Edit`;
+            approve.classList.add(`action-btn`);
+            approve.classList.add(`approve`);
+            approve.textContent = `Approve`;
+
+            article.appendChild(h4);
+            article.appendChild(pCategory);
+            article.appendChild(pContent);
+            li.appendChild(article);
+            li.appendChild(edit);
+            li.appendChild(approve);
+            ul.appendChild(li);
+        }
+    });
+
+    let divPost = document.getElementById(`relatedPosts`);
+    let ulPost = document.getElementById(`review-list`);
+    let ulUpload = document.getElementById(`published-list`);
+    let divUpload = ulUpload.parentElement;
+    divPost.addEventListener(`click`, (event) => {
+
+        if (event.target.textContent === `Edit`) {
+            let parent = event.target.parentElement;
+            let h4Title = document.getElementById(`post-title`);
+            let pCategory = document.getElementById(`post-category`);
+            let pContent = document.getElementById(`post-content`);
+
+            let h4Text = parent.getElementsByTagName(`h4`)[0];
+            let pCategoryText = parent.getElementsByTagName(`p`)[0];
+            let pContentText = parent.getElementsByTagName(`p`)[1];
+
+            h4Title.value=h4Text.textContent;
+            pCategory.value=pCategoryText.textContent;
+            pContent.value=pContentText.textContent;
+
+            ulPost.removeChild(parent); 
+        }
+
+    });
+
+    divPost.addEventListener(`click`, (event) => {
+
+        if (event.target.textContent === `Approve`) {
+            let parent = event.target.parentElement;
+            ulPost.removeChild(parent);
+            let btnApprove = parent.getElementsByTagName(`button`)[0];
+            let btnEdit = parent.getElementsByTagName(`button`)[1];
+            parent.removeChild(btnApprove);
+            parent.removeChild(btnEdit);
+            ulUpload.appendChild(parent);
+        }
+    });
+
+    divUpload.addEventListener(`click`, (event) => {
+
+        if (event.target.textContent === `Clear`) {
+            ulUpload.innerHTML=``;
+        }
+    });
+}
