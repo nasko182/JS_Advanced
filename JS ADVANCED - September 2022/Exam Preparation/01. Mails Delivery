@@ -1,0 +1,136 @@
+function solve() {
+    let btnAdd = document.querySelector(`#add`);
+    let btnReset = document.querySelector(`#reset`);
+
+    let recipient = document.querySelector(`#recipientName`);
+    let title = document.querySelector(`#title`);
+    let message = document.querySelector(`#message`);
+
+    let list = document.querySelector(`#list`);
+
+    btnAdd.addEventListener(`click`,(e)=>{
+        if(recipient.value!==``
+        && title.value!==``
+        && message.value!==``){
+            e.preventDefault();
+        let li = document.createElement(`li`);
+        let h4Recipient = document.createElement(`h4`);
+        let h4Title = document.createElement(`h4`);
+        let spanMessage = document.createElement(`span`);
+
+        let div = document.createElement(`div`);
+
+        div.setAttribute(`id`,`list-action`);
+        let btnSend= document.createElement(`button`);
+        btnSend.setAttribute(`type`,`submit`);
+        btnSend.setAttribute(`id`,`send`);
+        btnSend.textContent=`Send`;
+
+        let btnDelete= document.createElement(`button`);
+        btnDelete.setAttribute(`type`,`submit`);
+        btnDelete.setAttribute(`id`,`delete`);
+        btnDelete.textContent=`Delete`;
+
+        div.appendChild(btnSend);
+        div.appendChild(btnDelete);
+
+        h4Recipient.textContent=`Recipient Name: `+recipient.value;
+        recipient.value=``;
+        h4Title.textContent=`Title: `+title.value;
+        title.value=``;
+        spanMessage.textContent=message.value;
+        message.value=``;
+
+        li.appendChild(h4Title);
+        li.appendChild(h4Recipient);
+        li.appendChild(spanMessage);
+        li.appendChild(div);
+        list.appendChild(li);
+        }
+    })
+    btnReset.addEventListener(`click`,()=>{
+        recipient.value=``;
+        title.value=``;
+        message.value=``;
+    })
+
+    let sentList = document.querySelector(`.sent-list`);
+    list.addEventListener(`click`,(event)=>{
+        if(event.target.textContent===`Send`){
+            let li = document.createElement(`li`);
+            let spanTo = document.createElement(`span`);
+            let spanTitle = document.createElement(`span`);
+            let parent = event.target.parentElement.parentElement;
+            let sTitle= parent.querySelectorAll(`h4`)[1];
+            let sTo= parent.querySelectorAll(`h4`)[0];
+
+            spanTo.textContent=`To: `+sTo.textContent;
+            sTo.textContent=``;
+            spanTitle.textContent=`Title: `+sTitle.textContent;
+            sTitle.textContent=``;
+            li.appendChild(spanTo);
+            li.appendChild(spanTitle);
+
+            list.removeChild(parent);
+
+        let div = document.createElement(`div`);
+
+        div.setAttribute(`class`,`btn`);
+        let btnDelete= document.createElement(`button`);
+        btnDelete.setAttribute(`type`,`submit`);
+        btnDelete.setAttribute(`class`,`delete`);
+        btnDelete.textContent=`Delete`;
+        div.appendChild(btnDelete);
+
+        li.appendChild(div);
+        sentList.appendChild(li);
+        }
+        let deleteList = document.querySelector(`.delete-list`);
+        if(event.target.textContent===`Delete`){
+            let li = document.createElement(`li`);
+            let spanTo = document.createElement(`span`);
+            let spanTitle = document.createElement(`span`);
+            let parent = event.target.parentElement.parentElement;
+            let sTitle= parent.querySelectorAll(`h4`)[1];
+            let sTo= parent.querySelectorAll(`h4`)[0];
+
+            spanTo.textContent=`To: `+sTo.textContent;
+            sTo.textContent=``;
+            spanTitle.textContent=`Title: `+sTitle.textContent;
+            sTitle.textContent=``;
+            li.appendChild(spanTo);
+            li.appendChild(spanTitle);
+
+            list.removeChild(parent);
+
+            deleteList.appendChild(li);
+        }
+    })
+
+        sentList.addEventListener(`click`,(event)=>{
+        let deleteList = document.querySelector(`.delete-list`);
+        console.log(12);
+        if(event.target.textContent===`Delete`){
+
+            let li = document.createElement(`li`);
+            let spanTo = document.createElement(`span`);
+            let spanTitle = document.createElement(`span`);
+            let parent = event.target.parentElement.parentElement;
+            let sTitle= parent.querySelectorAll(`span`)[1];
+            let sTo= parent.querySelectorAll(`span`)[0];
+
+            spanTo.textContent=`To: `+sTo.textContent;
+            sTo.textContent=``;
+            spanTitle.textContent=`Title: `+sTitle.textContent;
+            sTitle.textContent=``;
+            li.appendChild(spanTo);
+            li.appendChild(spanTitle);
+
+            sentList.removeChild(parent);
+
+            deleteList.appendChild(li);
+        }
+    });
+    
+
+}
