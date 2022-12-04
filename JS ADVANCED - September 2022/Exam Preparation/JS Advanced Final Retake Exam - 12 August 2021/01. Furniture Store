@@ -1,0 +1,86 @@
+function solve() {
+    let modelElement = document.getElementById(`model`);
+    let yearElement = document.getElementById(`year`);
+    let descriptionElement = document.getElementById(`description`);
+    let priceElement = document.getElementById(`price`);
+    let addButton = document.getElementById(`add`);
+    let table = document.getElementById(`furniture-list`);
+    let totalPriceElement = document.querySelector(`.total-price`);
+
+    
+    
+    addButton.addEventListener(`click`, (event) => {
+        event.preventDefault();
+        let model = modelElement.value;
+        let year = Number(yearElement.value);
+        let description = descriptionElement.value;
+        let price = Number(priceElement.value);
+        
+        if (price < 0 || year < 0) {
+            return;
+        }
+        if (model == `` || year == `` || description == `` || price == ``) {
+            return;
+        }
+
+        let trView = document.createElement(`tr`);
+        trView.classList.add(`info`);
+        let tdModel = document.createElement(`td`);
+        tdModel.textContent=model;
+        let tdPrice = document.createElement(`td`);
+        tdPrice.textContent = price.toFixed(2);
+        let tdButtons = document.createElement(`td`);
+        trView.appendChild(tdModel);
+        trView.appendChild(tdPrice);
+        trView.appendChild(tdButtons);
+        let trHide = document.createElement(`tr`);
+        trHide.classList.add(`hide`);
+        let tdYear = document.createElement(`td`);
+        tdYear.textContent = `Year: ${year}`;
+        let tdDescription = document.createElement(`td`);
+        tdDescription.setAttribute(`colspan`,3)
+        tdDescription.textContent=`Description: ${description}`;
+        trHide.appendChild(tdYear);
+        trHide.appendChild(tdDescription);
+
+
+        let moreInfoBtn = document.createElement(`button`);
+        moreInfoBtn.classList.add(`moreBtn`);
+        moreInfoBtn.textContent = `More Info`
+        let buyItBtn = document.createElement(`button`);
+        buyItBtn.classList.add(`buyBtn`);
+        buyItBtn.textContent = `Buy it`;
+
+        trView.getElementsByTagName(`td`)[2].appendChild(moreInfoBtn);
+        trView.getElementsByTagName(`td`)[2].appendChild(buyItBtn);
+
+        table.appendChild(trView);
+        table.appendChild(trHide);
+
+        moreInfoBtn.addEventListener(`click`, (event) => {
+            if (event.target.textContent == `More Info`) {
+                event.target.textContent = `Less Info`;
+                trHide.style.display = `contents`;
+            }
+            else if (event.target.textContent == `Less Info`) {
+                event.target.textContent = `More Info`;
+                trHide.style.display = `none`;
+            }
+        })
+
+        buyItBtn.addEventListener(`click`, () => {
+            let totalPrice = Number(totalPriceElement.textContent);
+
+            table.removeChild(trHide);
+            table.removeChild(trView);
+
+            totalPriceElement.textContent = (totalPrice + price).toFixed(2);
+        })
+
+        modelElement.value=``;
+        yearElement.value=``;
+        descriptionElement.value=``;
+        priceElement.value=``;
+
+    })
+}
