@@ -1,0 +1,161 @@
+describe("cinema", function() {
+    describe("showMovies", function() {
+        it("function should accept array", function() {
+            expect(cinema.showMovies([])).to.be.equal(cinema.showMovies([]));
+        });
+        it("function shouldn't accept anything else expect array", function() {
+            let expected = `movieArr.join is not a function`;
+
+            expect(()=>{cinema.showMovies({});}).to.throw(expected);
+        });
+        it("function shouldn't accept number", function() {
+            let expected = `movieArr.join is not a function`;
+
+            expect(()=>{cinema.showMovies(12);}).to.throw(expected);
+        });
+        it("function shouldn't accept string", function() {
+            let expected = `movieArr.join is not a function`;
+
+            expect(()=>{cinema.showMovies(`nasko`);}).to.throw(expected);
+        });
+        it("function should return message if array length is 0", function() {
+            let expected = 'There are currently no movies to show.';
+            expect(cinema.showMovies([])).to.be.equal(expected);
+        });
+        it("function should return text if array length 1", function() {
+            let expected = 'Godzila';
+            expect(cinema.showMovies([`Godzila`])).to.be.equal(expected);
+        });
+        it("function should return text if array length 2", function() {
+            let expected = 'Godzila, Thor';
+            expect(cinema.showMovies([`Godzila`,`Thor`])).to.be.equal(expected);
+        });
+        it("function should return text if array length 2", function() {
+            let expected = 'Godzila, Thor, Marvel';
+            expect(cinema.showMovies([`Godzila`,`Thor`, `Marvel`])).to.be.equal(expected);
+        });
+     });
+
+     describe("ticketPrice", function() {
+        it("function should accept Premiere", function() {
+            expect(cinema.ticketPrice("Premiere")).to.be.equal(12);
+        });
+        it("function should accept Normal", function() {
+            expect(cinema.ticketPrice("Normal")).to.be.equal(7.50);
+        });
+        it("function should accept Discount", function() {
+            expect(cinema.ticketPrice("Discount")).to.be.equal(5.50);
+        });
+        it("function shouldn't accept anything else expect schedule", function() {
+            let expected = 'Invalid projection type.';
+
+            expect(()=>{cinema.ticketPrice(`nasko`);}).to.throw(expected);
+        });
+        it("function shouldn't accept anything else expect string", function() {
+            let expected = 'Invalid projection type.';
+
+            expect(()=>{cinema.ticketPrice(12);}).to.throw(expected);
+        });
+        it("function shouldn't accept if isn't schedule", function() {
+            let expected = 'Invalid projection type.';
+
+            expect(()=>{cinema.ticketPrice(`nasko`);}).to.throw(expected);
+        });
+
+        
+    });
+
+    describe("swapSeatsInHall", function() {
+        it("function should accept two numbers", function() {
+            expect(cinema.swapSeatsInHall(3,4)).to.be.equal(cinema.swapSeatsInHall(3,4));
+        });
+        it("function shouldn't accept firstParam anything else except number", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(`3`,4)).to.be.equal(expected);
+        });
+        it("function shouldn't accept firstParam to be < 0", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(-1,4)).to.be.equal(expected);
+        });
+        it("function shouldn't accept firstParam to be = 0", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(0,4)).to.be.equal(expected);
+        });
+        it("function shouldn't accept firstParam to be > 20", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(21,4)).to.be.equal(expected);
+        });
+
+
+        it("function shouldn't accept secondParam anything else except number", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(3,`4`)).to.be.equal(expected);
+        });
+        it("function shouldn't accept secondParam to be <0", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(3,-1)).to.be.equal(expected);
+        });
+        it("function shouldn't accept secondParam to be =0", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(3,0)).to.be.equal(expected);
+        });
+        it("function shouldn't accept secondParam to be >20", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(3,21)).to.be.equal(expected);
+        });
+        it("function shouldn't accept anything else except numbers", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(`3`,`4`)).to.be.equal(expected);
+        });
+        it("function params should be >0", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(-1,0)).to.be.equal(expected);
+        });
+        it("function params should be <20", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(22,21)).to.be.equal(expected);
+        });
+        it("function params shouldn't be equal", function() {
+
+            let expected = 'Unsuccessful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(19,19)).to.be.equal(expected);
+        });
+        
+        it("function should return text", function() {
+
+            let expected = 'Successful change of seats in the hall.';
+
+            expect(cinema.swapSeatsInHall(3,4)).to.be.equal(expected);
+        });
+
+
+
+
+        
+        
+    });
+     
+});
