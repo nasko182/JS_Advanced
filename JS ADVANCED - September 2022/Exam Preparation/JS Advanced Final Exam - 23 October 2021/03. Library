@@ -1,0 +1,124 @@
+describe("Library", function() {
+    describe("calcPriceOfBook", function() {
+        it("function should accepts string as name of book", function() {
+            let actual = library.calcPriceOfBook(`book`,25);
+            let expected = `Price of book is 10.00`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function shouldn't accepts number as name of book", function() {
+            // let actual = library.calcPriceOfBook(`,25);
+            let expected = `Invalid input`;
+
+            expect(()=>{library.calcPriceOfBook(25,25)}).to.throw(expected);
+        });
+        it("function should accepts number as year", function() {
+            let actual = library.calcPriceOfBook(`book`,25);
+            let expected =`Price of book is 10.00`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function shouldn't accepts string as year", function() {
+            // let actual = library.calcPriceOfBook(`,25);
+            let expected = `Invalid input`;
+
+            expect(()=>{library.calcPriceOfBook(25,`25`)}).to.throw(expected);
+        });
+        it("function should return text if year is  < 1980 ", function() {
+            let actual = library.calcPriceOfBook(`book`,1979);
+            let expected = `Price of book is 10.00`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function should return text if year is  = 1980 ", function() {
+            let actual = library.calcPriceOfBook(`book`,1980);
+            let expected = `Price of book is 10.00`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function should return text if year is  > 1980 ", function() {
+            let actual = library.calcPriceOfBook(`book`,1981);
+            let expected = `Price of book is 20.00`;
+
+            expect(actual).to.be.equal(expected);
+        });
+     });
+
+     describe("findBook", function() {
+        it("function should throw an error if booksArr is empty", function() {
+            // let actual = library.findBook([],`name`);
+            let expected = `No books currently available`;
+
+            expect(()=>{library.findBook([],`name`)}).to.throw(expected);
+        });
+        it("function should throw an error if booksArr isn't arr", function() {
+            // let actual = library.findBook([],`name`);
+            let expected = `booksArr.find is not a function`;
+
+            expect(()=>{library.findBook({},`name`)}).to.throw(expected);
+        });
+        it("function should throw an error if booksArr is number", function() {
+            // let actual = library.findBook([],`name`);
+            let expected = `booksArr.find is not a function`;
+
+            expect(()=>{library.findBook(12,`name`)}).to.throw(expected);
+        });
+        it("function should return message if booksArr does not contain book", function() {
+            let actual = library.findBook([`another`,`notTheSame`],`name`);
+            let expected = `The book you are looking for is not here!`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function should return message if booksArr contains book", function() {
+            let actual = library.findBook([`another`,`notTheSame`,`name`],`name`);
+            let expected = `We found the book you want.`;
+
+            expect(actual).to.be.equal(expected);
+        });
+    });
+     
+    describe("arrangeTheBooks", function() {
+        it("function should throw an error if countBook is string", function() {
+            // let actual = library.findBook([],`name`);
+            let expected = `Invalid input`;
+
+            expect(()=>{library.arrangeTheBooks(`12`)}).to.throw(expected);
+        });
+        it("function should throw an error if countBook is <0", function() {
+            // let actual = library.findBook([],`name`);
+            let expected = `Invalid input`;
+
+            expect(()=>{library.arrangeTheBooks(-1)}).to.throw(expected);
+        });
+        it("function should work with number", function() {
+            let actual = library.arrangeTheBooks(12);
+            let expected = `Great job, the books are arranged.`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function should work with 0", function() {
+            let actual = library.arrangeTheBooks(0);
+            let expected = `Great job, the books are arranged.`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function should work return message if is <40", function() {
+            let actual = library.arrangeTheBooks(12);
+            let expected = `Great job, the books are arranged.`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function should work return message if is =40", function() {
+            let actual = library.arrangeTheBooks(40);
+            let expected = `Great job, the books are arranged.`;
+
+            expect(actual).to.be.equal(expected);
+        });
+        it("function should work return message if is >40", function() {
+            let actual = library.arrangeTheBooks(41);
+            let expected = "Insufficient space, more shelves need to be purchased.";
+
+            expect(actual).to.be.equal(expected);
+        });
+    });
+});
