@@ -24,11 +24,12 @@ function solve() {
     let fuelValue = fuel.value;
     let originalCostValue = originalCost.value;
     let sellingPriceValue = sellingPrice.value;
-    form.reset();
-
-    if (!makeValue || !modelValue || !yearValue || !originalCostValue || !sellingPriceValue) {
+    
+    if (!makeValue || !modelValue || !yearValue || !originalCostValue || !sellingPriceValue||yearValue>2022||yearValue<1990||originalCostValue>sellingPriceValue) {
       return;
     }
+    form.reset();
+    year.value=``
 
     let tr = document.createElement(`tr`);
     tr.classList.add(`row`);
