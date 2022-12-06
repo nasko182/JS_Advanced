@@ -1,0 +1,87 @@
+function solve() {
+    let form = document.querySelector(`form`);
+    let collectionOfSongs = document.querySelector(`.all-hits-container`)
+    let savedSongs = document.querySelector(`.saved-container`);
+    let likesParagraph = document.querySelector(`.likes p`) 
+
+    form.addEventListener(`submit`,onSubmit);
+
+
+    function onSubmit(event){
+        event.preventDefault()
+        let genre = document.getElementById(`genre`).value;
+        let name = document.getElementById(`name`).value;
+        let author = document.getElementById(`author`).value;
+        let date = document.getElementById(`date`).value;
+        let data = {
+            genre,
+            name,
+            author,
+            date
+        }
+        let div = document.createElement(`div`);
+
+        
+        if(Object.values(data).some(v=>v===``)){
+            return;
+        }
+        
+        div.classList.add(`hits-info`)
+        div.innerHTML=`
+        <img src="./static/img/img.png"> 
+        <h2>Genre: ${data.genre}</h2>
+        <h2>Name: ${data.name}</h2>
+        <h2>Author: ${data.author}</h2>
+        <h3>Date: ${data.date}</h3>
+        <button class="save-btn">Save song</button>
+        <button class="like-btn">Like song</button>
+        <button class="delete-btn">Delete</button> 
+        `
+        let saveBtn = div.querySelector(`.save-btn`);
+        let likeBtn = div.querySelector(`.like-btn`);
+        let deleteBtn = div.querySelector(`.delete-btn`);
+        
+        saveBtn.addEventListener(`click`,onSave);
+        likeBtn.addEventListener(`click`,onLike);
+        deleteBtn.addEventListener(`click`,onDelete);
+        
+        
+        collectionOfSongs.appendChild(div);
+        
+        function onSave(event){
+            let parent = event.target.parentElement;
+
+            let div = document.createElement(`div`);
+            div.classList.add(`hits-info`)
+            
+            div.innerHTML=`
+            <img src="./static/img/img.png"> 
+            <h2>Genre: ${data.genre}</h2>
+            <h2>Name: ${data.name}</h2>
+            <h2>Author: ${data.author}</h2>
+            <h3>Date: ${data.date}</h3>
+            <button class="delete-btn">Delete</button> 
+            `
+            let deleteBtn = div.querySelector(`.delete-btn`);
+            deleteBtn.addEventListener(`click`,onDelete);
+            
+            parent.remove();
+            savedSongs.appendChild(div);
+        }
+        
+        function onLike(event){
+            let likes = Number(likesParagraph.textContent.split(` `)[2]);
+            likesParagraph.textContent = `Total Likes: ${likes+1}`
+            
+            event.target.disabled =`true`
+            
+        }
+        
+        function onDelete(event){
+            let parent = event.target.parentElement;
+            
+            parent.remove();
+        }
+        form.reset();
+    }
+}
