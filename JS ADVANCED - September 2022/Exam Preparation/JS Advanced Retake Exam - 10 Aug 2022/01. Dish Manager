@@ -1,0 +1,79 @@
+function solve() {
+  let form = document.querySelector(`form`);
+  let submitBtn = document.querySelector(`#form-btn`);
+  let ulProgress = document.getElementById(`in-progress`);
+  let ulFinished = document.getElementById(`finished`);
+  let spanCounter = document.getElementById(`progress-count`);
+  let counter = 0;
+  let clearBtn = document.getElementById(`clear-btn`);
+  clearBtn.addEventListener(`click`, () => {
+    ulFinished.innerHTML = ``;
+  })
+
+  submitBtn.addEventListener(`click`, onSubmit)
+
+  function onSubmit(event) {
+    event.preventDefault();
+
+    let firstName = document.getElementById(`first-name`);
+    let lastName = document.getElementById(`last-name`);
+    let age = document.getElementById(`age`);
+    var select = document.getElementById('genderSelect');
+    let gender = select.options[select.selectedIndex];
+    let description = document.getElementById(`task`);
+
+
+    let firstNameValue = firstName.value;
+    let lastNameValue = lastName.value;
+    let ageValue = age.value;
+    let genderValue = gender.value;
+    let descriptionValue = description.value;
+    form.reset();
+
+    if (!firstNameValue || !lastNameValue || !ageValue || !descriptionValue) {
+      return;
+    }
+
+    let li = document.createElement(`li`);
+    li.classList.add(`each-line`);
+
+    li.innerHTML = `
+    <article>
+    <h4>${firstNameValue} ${lastNameValue}</h4>
+    <p>${genderValue}, ${ageValue}</p>
+    <p>Dish description: ${descriptionValue}</p>
+    </article>
+    <button class="edit-btn">Edit</button>
+    <button class="complete-btn">Mark as complete</button>
+    `;
+
+    let editBtn = li.getElementsByTagName(`button`)[0];
+    editBtn.addEventListener(`click`, () => {
+      //return to form
+      firstName.value = firstNameValue;
+      lastName.value = lastNameValue;
+      age.value = ageValue;
+      select.value = genderValue;
+      description.value = descriptionValue;
+
+      li.remove();
+      counter--;
+      spanCounter.textContent = counter;
+    })
+
+    let completeBtn = li.getElementsByTagName(`button`)[1];
+    completeBtn.addEventListener(`click`, () => {
+      editBtn.remove();
+      completeBtn.remove();
+      ulFinished.appendChild(li);
+      counter--;
+      spanCounter.textContent = counter;
+
+
+    })
+
+    ulProgress.appendChild(li);
+    counter++;
+    spanCounter.textContent = counter;
+  }
+}
