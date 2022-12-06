@@ -1,0 +1,91 @@
+function solve() {
+    let form = document.querySelector(`form`);
+    
+
+    form.addEventListener(`submit`,onSubmit)
+
+
+    function onSubmit(event){
+        event.preventDefault();
+        let openSection = document.getElementsByTagName(`section`)[1];
+    let open = openSection.getElementsByTagName(`div`)[1];
+    let progressSection = document.getElementsByTagName(`section`)[2];
+    let progress = progressSection.getElementsByTagName(`div`)[1];
+    let completeSection = document.getElementsByTagName(`section`)[3];
+    let complete = completeSection.getElementsByTagName(`div`)[1];
+
+        let task = document.getElementById(`task`).value;
+        let date = document.getElementById(`date`).value;
+        let descriptionValue = document.getElementById(`description`).value;
+        // let descriptionValue =  description.value ;
+        
+        let startBtn = document.createElement(`button`);
+        let deleteBtn = document.createElement(`button`);
+        
+        if(!task||!descriptionValue||!date){
+            return;
+        }
+
+        let article = document.createElement(`article`);
+        article.innerHTML=`
+        <h3>${task}</h3>
+        <p>Description: ${descriptionValue}</p>
+        <p>Due Date: ${date}</p>
+        <div class="flex">
+        </div>
+        `
+        
+        
+        let buttonSection = article.querySelector(`.flex`);
+        startBtn.classList.add(`green`);
+        startBtn.textContent=`Start`;
+        startBtn.addEventListener(`click`,()=>{
+        article.innerHTML=`
+            <h3>${task}</h3>
+            <p>Description: ${descriptionValue}</p>
+            <p>Due Date: ${date}</p>
+            <div class="flex">
+            </div>
+            `
+            buttonSection = article.querySelector(`.flex`);
+            deleteBtn.classList.add(`red`);
+            deleteBtn.textContent=`Delete`;
+            deleteBtn.addEventListener(`click`,()=>{
+                article.remove();
+            })
+            let finishBtn = document.createElement(`button`);
+            finishBtn.classList.add(`orange`);
+            finishBtn.textContent=`Finish`;
+            finishBtn.addEventListener(`click`,()=>{
+                article.innerHTML=`
+                <h3>${task}</h3>
+            <p>Description: ${descriptionValue}</p>
+            <p>Due Date: ${date}</p>
+            <div class="flex">
+            </div>
+                `
+
+                complete.appendChild(article);
+            })
+
+
+            buttonSection.appendChild(deleteBtn);
+            buttonSection.appendChild(finishBtn);
+
+            progress.appendChild(article);
+        })
+        
+        deleteBtn.classList.add(`red`);
+        deleteBtn.textContent=`Delete`;
+        deleteBtn.addEventListener(`click`,()=>{
+            article.remove();
+        })
+        
+        buttonSection.appendChild(startBtn);
+        buttonSection.appendChild(deleteBtn);
+        
+        
+        open.appendChild(article);
+        form.reset();
+    }
+}
