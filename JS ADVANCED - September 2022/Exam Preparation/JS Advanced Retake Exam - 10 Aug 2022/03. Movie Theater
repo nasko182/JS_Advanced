@@ -1,0 +1,110 @@
+describe("movieTheater", function() {
+    describe("ageRestrictions", function() {
+
+        it("should return message ", function() {
+            let actual = movieTheater.ageRestrictions(`G`);
+            expect(actual).to.equal(`All ages admitted to watch the movie`)
+            
+            actual = movieTheater.ageRestrictions(`PG`);
+            expect(actual).to.equal(`Parental guidance suggested! Some material may not be suitable for pre-teenagers`);
+            
+            actual = movieTheater.ageRestrictions(`R`);
+            expect(actual).to.equal(`Restricted! Under 17 requires accompanying parent or adult guardian`);
+
+            actual = movieTheater.ageRestrictions(`NC-17`);
+            expect(actual).to.equal(`No one under 17 admitted to watch the movie`);
+            
+            actual= movieTheater.ageRestrictions(`PGOOOO`);
+            expect(actual).to.equal(`There are no age restrictions for this movie`);
+        });
+     });
+
+
+     describe(`moneySpent`,()=>{
+        it(`should return message if data is incorrect`,()=>{
+
+            expect(()=>{movieTheater.moneySpent(`12`,[],[])}).to.throw(`Invalid input`);
+
+            expect(()=>{movieTheater.moneySpent(12,12,[])}).to.throw(`Invalid input`);
+
+            expect(()=>{movieTheater.moneySpent(12,[],12)}).to.throw(`Invalid input`);
+
+            expect(()=>{movieTheater.moneySpent([],[],[])}).to.throw(`Invalid input`);
+        });
+
+        it(`should return correct price`,()=>{
+            let expected=`The total cost for the purchase is 45.00`;
+            let actual = movieTheater.moneySpent(3,[],[]);
+            expect(actual).to.equal(expected);
+
+            expected=`The total cost for the purchase is 36.00`;
+            actual = movieTheater.moneySpent(2,["Nachos"],[]);
+            expect(actual).to.equal(expected);
+
+            expected=`The total cost for the purchase is 34.50`;
+            actual = movieTheater.moneySpent(2,["Popcorn"],[]);
+            expect(actual).to.equal(expected);
+
+            expected=`The total cost for the purchase is 40.50`;
+            actual = movieTheater.moneySpent(2,["Popcorn",`Nachos`],[]);
+            expect(actual).to.equal(expected);
+
+            expected=`The total cost for the purchase is 43.00`;
+            actual = movieTheater.moneySpent(2,["Popcorn",`Nachos`],["Soda"]);
+            expect(actual).to.equal(expected);
+
+            expected=`The total cost for the purchase is 42.00`;
+            actual = movieTheater.moneySpent(2,["Popcorn",`Nachos`],["Water"]);
+            expect(actual).to.equal(expected);
+
+            expected=`The total cost for the purchase is 44.50`;
+            actual = movieTheater.moneySpent(2,["Popcorn",`Nachos`],["Soda","Water"]);
+            expect(actual).to.equal(expected);
+
+            expected=`The total cost for the purchase is 50.00`;
+            actual = movieTheater.moneySpent(3,[],["Soda","Soda"]);
+            expect(actual).to.equal(expected);
+        });
+
+        it(`should return correct price if bill is >50`,()=>{
+            let expected=`The total cost for the purchase with applied discount is 56.80`;
+            let actual = movieTheater.moneySpent(4,[`Nachos`],["Soda","Soda"]);
+            expect(actual).to.equal(expected);
+        });
+     })
+
+     describe(`reservation`,()=>{
+        it(`should throw error if input is invalid`,()=>{
+            let expected = `Invalid input`;
+
+            expect(()=>{movieTheater.reservation(12,12)}).to.throw(expected);
+
+            expect(()=>{movieTheater.reservation([],`12`)}).to.throw(expected);
+
+            expect(()=>{movieTheater.reservation(12,[])}).to.throw(expected);
+        });
+
+        it(`should return correct rowNumber`,()=>{
+            let actual = movieTheater.reservation([{ rowNumber: 1, freeSeats: 7 }, { rowNumber: 2, freeSeats: 5 }],2);
+            expect(actual).to.equal(2);
+
+
+            actual = movieTheater.reservation([{ rowNumber: 1, freeSeats: 7 }],2);
+            expect(actual).to.equal(1);
+
+            actual = movieTheater.reservation([{ rowNumber: 2, freeSeats: 5 }],2);
+            expect(actual).to.equal(2);
+
+            actual = movieTheater.reservation([{ rowNumber: 1, freeSeats: 2 }, { rowNumber: 2, freeSeats: 1 }],2);
+            expect(actual).to.equal(1);
+
+            actual = movieTheater.reservation([{ rowNumber: 1, freeSeats: 2 }, { rowNumber: 2, freeSeats: 2 }],2);
+            expect(actual).to.equal(2);
+
+            actual = movieTheater.reservation([{ rowNumber: 1, freeSeats: 1 }, { rowNumber: 2, freeSeats: 1 }],2);
+            expect(actual).to.equal(-Infinity);
+
+
+        });
+     })
+});
