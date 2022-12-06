@@ -1,0 +1,75 @@
+describe("carService", function() {
+    describe("isExpensive", function() {
+
+        it("should return message if engine or transmission", function() {
+            let expected = `The issue with the car is more severe and it will cost more money`;
+            let actual = carService.isItExpensive(`Engine`);
+            expect(actual).to.equal(expected);
+
+            actual = carService.isItExpensive(`Transmission`);
+            expect(actual).to.equal(expected);
+        });
+        it("should return message if issue is something else", function() {
+            let expected = `The overall price will be a bit cheaper`;
+            let actual = carService.isItExpensive(`Motor`);
+            expect(actual).to.equal(expected);
+
+            actual = carService.isItExpensive(`Turbo`);
+            expect(actual).to.equal(expected);
+        });
+     });
+
+
+     describe(`discount`,()=>{
+        it(`should throw error if input is invalid`,()=>{
+            let expected = "Invalid input";
+
+            expect(()=>{carService.discount(`12`,`12`)}).to.throw(expected);
+
+            expect(()=>{carService.discount(`12`,11)}).to.throw(expected);
+
+            expect(()=>{carService.discount(12,`12`)}).to.throw(expected);
+        });
+
+        it(`should return correct price`,()=>{
+            let actual = carService.discount(3,30);
+            expect(actual).to.equal(`Discount applied! You saved 4.5$`)
+
+            actual = carService.discount(7,30);
+            expect(actual).to.equal(`Discount applied! You saved 4.5$`)
+
+            actual = carService.discount(8,30);
+            expect(actual).to.equal(`Discount applied! You saved 9$`)
+
+            actual = carService.discount(2,30);
+            expect(actual).to.equal("You cannot apply a discount")
+
+            actual = carService.discount(1,30);
+            expect(actual).to.equal("You cannot apply a discount")
+        })
+     });
+
+     describe(`partsToBuy`,()=>{
+        it(`should throw error if input is invalid`,()=>{
+            let expected = "Invalid input";
+
+            expect(()=>{carService.partsToBuy(1,2)}).to.throw(expected);
+            expect(()=>{carService.partsToBuy(1,[])}).to.throw(expected);
+            expect(()=>{carService.partsToBuy([],2)}).to.throw(expected);
+        })
+        it(`should return correct price`,()=>{
+            let actual = carService.partsToBuy([{ part: "blowoff valve", price: 145 }, { part: "coil springs", price: 230 }],["blowoff valve", "injectors"]);
+            expect(actual).to.equal(145)
+
+            actual = carService.partsToBuy([{ part: "blowoff valve", price: 145 },{ part: "blowoff valve", price: 145 }, { part: "coil springs", price: 230 }],["blowoff valve", "injectors"]);
+            expect(actual).to.equal(290)
+
+            actual = carService.partsToBuy([{ part: "blowoff valve", price: 145 },{ part: "blowoff valve", price: 145 }, { part: "coil springs", price: 230 }],["blow valve", "injectors"]);
+            expect(actual).to.equal(0)
+
+            actual = carService.partsToBuy([{ part: "blowoff valve", price: 145 },{ part: "blowoff valve", price: 145 }, { part: "coil springs", price: 2 }],["blowoff valve", "injectors","coil springs"]);
+            expect(actual).to.equal(292)
+        })
+     })
+
+});
