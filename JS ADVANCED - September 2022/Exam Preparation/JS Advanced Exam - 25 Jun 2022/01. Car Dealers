@@ -1,0 +1,77 @@
+function solve() {
+  let form = document.querySelector(`form`);
+  let submitBtn = document.getElementById(`publish`);
+  let table = document.getElementById(`table-body`);
+  let ul = document.getElementById(`cars-list`);
+  let profitSum = document.getElementById(`profit`);
+
+
+  submitBtn.addEventListener(`click`, onSubmit);
+
+  function onSubmit(event) {
+    event.preventDefault();
+
+    let make = document.getElementById(`make`);
+    let model = document.getElementById(`model`);
+    let year = document.getElementById(`year`);
+    let select = document.getElementById(`fuel`);
+    let fuel = select.options[select.selectedIndex];
+    let originalCost = document.getElementById(`original-cost`);
+    let sellingPrice = document.getElementById(`selling-price`);
+    let makeValue = make.value;
+    let modelValue = model.value;
+    let yearValue = year.value;
+    let fuelValue = fuel.value;
+    let originalCostValue = originalCost.value;
+    let sellingPriceValue = sellingPrice.value;
+    form.reset();
+
+    if (!makeValue || !modelValue || !yearValue || !originalCostValue || !sellingPriceValue) {
+      return;
+    }
+
+    let tr = document.createElement(`tr`);
+    tr.classList.add(`row`);
+    tr.innerHTML = `
+                      <td>${makeValue}</td>
+                      <td>${modelValue}</td>
+                      <td>${yearValue}</td>
+                      <td>${fuelValue}</td>
+                      <td>${originalCostValue}</td>
+                      <td>${sellingPriceValue}</td>
+                      <td>
+                        <button class="action-btn edit">Edit</button>
+                        <button class="action-btn Sell">Sell</button>
+                      </td>
+    `;
+
+    let editBtn = tr.getElementsByTagName(`button`)[0];
+    editBtn.addEventListener(`click`, () => {
+      make.value = makeValue;
+      model.value = modelValue;
+      year.value = yearValue;
+      select.value = fuelValue;
+      originalCost.value = originalCostValue;
+      sellingPrice.value = sellingPriceValue;
+      tr.remove();
+    });
+
+    let sellBtn = tr.getElementsByTagName(`button`)[1];
+    sellBtn.addEventListener(`click`,()=>{
+      tr.remove();
+      let li = document.createElement(`li`);
+      li.classList.add(`each-list`);
+      let profit = Number(sellingPriceValue)-Number(originalCostValue)
+      li.innerHTML=`
+      <span>${makeValue} ${modelValue}</span>
+      <span>${yearValue}</span>
+      <span>${profit}</span>
+      `
+      ul.appendChild(li);
+
+      profitSum.textContent = (Number(profitSum.textContent)+profit).toFixed(2);
+    })
+
+    table.appendChild(tr);
+  }
+}
