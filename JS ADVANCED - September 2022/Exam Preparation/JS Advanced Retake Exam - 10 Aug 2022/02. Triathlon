@@ -1,0 +1,59 @@
+class Triathlon {
+    constructor(competitionName ){
+        this.competitionName=competitionName;
+        this.participants = {};
+        this.listOfFinalists = [];
+    }
+
+    addParticipant (participantName, participantGender){
+        let participant = Object.keys(this.participants).find(p=>p == participantName)
+        if(participant!=undefined){
+            return`${participantName} has already been added to the list`
+        }
+        this.participants[participantName]=participantGender;
+        return `A new participant has been added - ${participantName}`
+    }
+
+    completeness (participantName, condition){
+        let participant = Object.keys(this.participants).find(p=>p == participantName)
+        if(participant==undefined){
+            throw new Error(`${participantName} is not in the current participants list`)
+        }
+        if(condition<30){
+            throw new Error(`${participantName} is not well prepared and cannot finish any discipline`)
+        }
+        if(Math.floor(condition/30)<=2){
+            return `${participantName} could only complete ${Math.floor(condition/30)} of the disciplines`
+        }
+        let participantObj = {
+            participantName,
+            participantGender: this.participants[participant]}
+        this.listOfFinalists.push(participantObj);
+        return `Congratulations, ${participantName} finished the whole competition`
+
+    }
+
+    rewarding(participantName){
+        let participant = this.listOfFinalists.find(p=>p.participantName==participantName);
+        if(participant==undefined){
+            return `${participantName} is not in the current finalists list`
+        }
+        return `${participantName} was rewarded with a trophy for his performance`
+    }
+
+    showRecord (criteria){
+        if(this.listOfFinalists.length==0){
+            return `There are no finalists in this competition`
+        }
+        if(criteria==`all`){
+            let text = `List of all ${this.competitionName} finalists:\n`;
+            this.listOfFinalists.sort((a,b)=>a.participantName.localeCompare(b.participantName)).forEach((p)=>{
+                text+=p.participantName+`\n`;
+            })
+
+            return text.trimEnd(`\n`);
+        }
+        let participant = this.listOfFinalists.filter(p=>p.participantGender==criteria).shift();
+        return `${participant.participantName} is the first ${criteria} that finished the ${this.competitionName} triathlon`;
+    }
+}
