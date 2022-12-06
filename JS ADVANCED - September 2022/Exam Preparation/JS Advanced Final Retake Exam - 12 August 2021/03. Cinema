@@ -149,6 +149,7 @@ describe("cinema", function() {
             let expected = 'Successful change of seats in the hall.';
 
             expect(cinema.swapSeatsInHall(3,4)).to.be.equal(expected);
+            expect(cinema.swapSeatsInHall(5,20)).to.be.equal(expected);
         });
 
 
