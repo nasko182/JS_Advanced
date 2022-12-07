@@ -9,28 +9,28 @@ function solve() {
     function onClick(event){
         event.preventDefault();
 
-        nextBtn.disabled=true;
         let firstName = document.getElementById(`first-name`);
         let lastName = document.getElementById(`last-name`);
         let dateIn = document.getElementById(`date-in`);
         let dateOut = document.getElementById(`date-out`);
         let guests = document.getElementById(`people-count`);
-
+        
         let firstNameValue = firstName.value;
         let lastNameValue=lastName.value;
         let dateInValue=dateIn.value;
         let dateOutValue=dateOut.value;
         let guestsValue = guests.value;
-        form.reset();
-
+        
         let dateInSplit= dateInValue.split(`-`);
         let dateInSum = (dateInSplit[0]*365)+(dateInSplit[1]*30)+((dateInSplit[2]))
         let dateOutSplit= dateOutValue.split(`-`);
         let dateOutSum = (dateOutSplit[0]*365)+(dateOutSplit[1]*30)+((dateOutSplit[2]))
-
-        if(!firstNameValue||!lastNameValue||!dateInValue||!dateOutValue||!guestsValue||(dateOutSum-dateInSum)<=0){
+        
+        if(!firstNameValue||!lastNameValue||!dateInValue||!dateOutValue||!guestsValue||(dateOutSum-dateInSum)<=0||Number(guestsValue)<1){
             return
         }
+        nextBtn.disabled=true;
+        form.reset();
 
         let li = document.createElement(`li`);
         li.classList.add(`reservation-content`);
@@ -42,8 +42,7 @@ function solve() {
                     <p>For ${guestsValue} people</p>
                 </article>
                 <button class="edit-btn">Edit</button>
-                <button class="continue-btn">Continue</button>
-                `
+                <button class="continue-btn">Continue</button>`
                 reservationUl.appendChild(li);
 
         let editBtn = document.querySelector(`.edit-btn`);
@@ -69,8 +68,7 @@ function solve() {
                     <p>For ${guestsValue} people</p>
                 </article>
                 <button class="confirm-btn">Confirm</button>
-                <button class="cancel-btn">Cancel</button>
-                `
+                <button class="cancel-btn">Cancel</button>`
             confirmUl.appendChild(li);
 
             let confirmBtn = document.querySelector(`.confirm-btn`);
@@ -79,7 +77,7 @@ function solve() {
                 nextBtn.disabled=false;
                 let verification = document.getElementById(`verification`);
                 verification.classList.add(`reservation-confirmed`);
-                verification.innerHTML=`<h1>Confirmed</h1>`
+                verification.textContent=`Confirmed.`
             })
 
             let cancelBtn = document.querySelector(`.cancel-btn`);
@@ -88,7 +86,7 @@ function solve() {
                 nextBtn.disabled=false;
                 let verification = document.getElementById(`verification`);
                 verification.classList.add(`reservation-cancelled`);
-                verification.innerHTML=`<h1>Cancelled</h1>`
+                verification.textContent=`Cancelled.`
             })
         });
     }
